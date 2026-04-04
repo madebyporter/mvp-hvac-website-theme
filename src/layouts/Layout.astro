@@ -41,7 +41,7 @@ const {
       <header class="fixed top-8 z-40 w-full">
         <div class="mx-auto flex px-8 max-w-none">
           <nav
-            class="inline-flex items-stretch gap-4 rounded-sm bg-black p-2 px-4 pr-2 backdrop-blur-sm"
+            class="inline-flex items-stretch gap-4 rounded-sm bg-black p-2 backdrop-blur-sm"
             aria-label="Primary"
           >
             <a
@@ -75,7 +75,7 @@ const {
       <slot />
 
       <footer class="mt-auto w-full border-t border-border bg-background">
-        <div class="mx-auto grid max-w-none grid-cols-12 gap-6 p-8 md:gap-8">
+        <div class="mx-auto grid max-w-none grid-cols-12 gap-6 p-16 md:gap-8">
           <div class="col-span-12 md:col-span-7">
             <p
               class="text-xs font-medium uppercase tracking-[0.14em] text-foreground-muted"
@@ -110,7 +110,7 @@ const {
               Contact
             </Button>
           </div>
-          <div class="col-span-12 border-t border-border p-4 text-xs text-foreground-muted">
+          <div class="col-span-12 border-t border-border p-4 px-0 text-xs text-foreground-muted">
             Serving {site.serviceArea.slice(0, 6).join(" · ")}
             {site.serviceArea.length > 6 ? " · …" : ""}
           </div>

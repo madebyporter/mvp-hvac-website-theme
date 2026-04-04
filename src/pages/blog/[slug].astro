@@ -2,8 +2,9 @@
 export const prerender = true;
 
 import Button from '../../components/Button.astro';
+import SubpageHero from '../../components/SubpageHero.astro';
 import Layout from '../../layouts/Layout.astro';
-import { posts } from '../../data/hvac-site-data';
+import { heroSpecialSlides, posts } from '../../data/hvac-site-data';
 
 export function getStaticPaths() {
   return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
@@ -36,20 +37,16 @@ const paragraphs = bodies[post.slug] ?? [
 
 <Layout title={`${post.title} | Blog`} description={post.excerpt} currentPath="/blog">
   <main>
-    <article class="w-full border-b border-border bg-background">
-      <header class="mx-auto grid max-w-none grid-cols-12 gap-6 p-8 md:gap-8">
-        <div class="col-span-12 lg:col-span-9">
-          <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">
-            {post.category} · {post.date}
-          </p>
-          <h1 class="mt-4 text-[clamp(2rem,4vw,3.25rem)] font-semibold leading-[1.02] tracking-[-0.04em]">
-            {post.title}
-          </h1>
-          <p class="mt-6 max-w-prose text-base leading-relaxed text-foreground-muted">{post.excerpt}</p>
-        </div>
-      </header>
+    <article class="w-full">
+      <SubpageHero
+        eyebrow={`${post.category} · ${post.date}`}
+        title={post.title}
+        description={post.excerpt}
+        imageSrc={heroSpecialSlides[0].imageSrc}
+        imageAlt={heroSpecialSlides[0].imageAlt}
+      />
 
-      <div class="mx-auto grid max-w-none grid-cols-12 gap-10 p-8 md:gap-12">
+      <div class="mx-auto grid max-w-none grid-cols-12 gap-10 border-b border-border bg-background p-8 md:gap-12">
         <div class="col-span-12 max-w-prose lg:col-span-8">
           <div class="space-y-6 text-[15px] leading-7 text-foreground-muted">
             {paragraphs.map((p) => <p>{p}</p>)}

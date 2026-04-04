@@ -2,8 +2,9 @@
 export const prerender = true;
 
 import Button from '../components/Button.astro';
+import SubpageHero from '../components/SubpageHero.astro';
 import Layout from '../layouts/Layout.astro';
-import { services, site } from '../data/hvac-site-data';
+import { heroSpecialSlides, services, site } from '../data/hvac-site-data';
 ---
 
 <Layout
@@ -12,25 +13,19 @@ import { services, site } from '../data/hvac-site-data';
   currentPath="/services"
 >
   <main>
-    <section class="w-full border-b border-border bg-background">
-      <div class="mx-auto grid max-w-none grid-cols-12 gap-6 p-8 md:gap-8">
-        <div class="col-span-12 lg:col-span-8">
-          <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">Services</p>
-          <h1 class="mt-4 text-[clamp(2rem,4vw,3.25rem)] font-semibold leading-[1.02] tracking-[-0.04em]">
-            HVAC for homes and businesses west of the Cuyahoga
-          </h1>
-          <p class="mt-6 max-w-prose text-base leading-relaxed text-foreground-muted">
-            Whether you need a same-day refrigerant leak found or a furnace swap before the lake-effect cold sets in, we
-            structure visits so you know what failed, what it costs, and what happens next.
-          </p>
-        </div>
-        <div class="col-span-12 flex items-end lg:col-span-4">
-          <Button type="button" class="w-full md:w-auto" data-drawer-open>
-            Book or ask a question
-          </Button>
-        </div>
+    <SubpageHero
+      eyebrow="Services"
+      title="HVAC for homes and businesses west of the Cuyahoga"
+      description="Whether you need a same-day refrigerant leak found or a furnace swap before the lake-effect cold sets in, we structure visits so you know what failed, what it costs, and what happens next."
+      imageSrc={heroSpecialSlides[1].imageSrc}
+      imageAlt={heroSpecialSlides[1].imageAlt}
+    >
+      <div slot="actions" class="pt-2">
+        <Button type="button" class="w-full md:w-auto" data-drawer-open>
+          Book or ask a question
+        </Button>
       </div>
-    </section>
+    </SubpageHero>
 
     <section class="w-full bg-background">
       <div class="mx-auto max-w-none divide-y divide-border p-8">
