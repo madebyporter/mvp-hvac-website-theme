@@ -124,62 +124,6 @@ html.drawer-open body {
   color: var(--ink);
 }
 
-.header-grid {
-  display: grid;
-  gap: 16px;
-  align-items: center;
-}
-
-.header-side {
-  display: flex;
-}
-
-.header-side--left {
-  justify-content: flex-start;
-}
-
-.header-side--right {
-  justify-content: flex-end;
-}
-
-@media (min-width: 768px) {
-  .header-grid {
-    grid-template-columns: minmax(320px, 1fr) auto minmax(320px, 1fr);
-  }
-}
-
-.nav-wrap {
-  display: flex;
-  justify-content: center;
-}
-
-.nav-group {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--layer-1);
-  box-shadow: var(--shadow-soft);
-}
-
-.nav-pill {
-  display: inline-flex;
-  align-items: center;
-  min-height: 40px;
-  padding: 0 14px;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  color: var(--ink);
-  text-decoration: none;
-  background: transparent;
-}
-
-.nav-pill.is-active {
-  background: var(--layer-2);
-  border-color: var(--border);
-}
 
 .grid-modules {
   display: grid;

@@ -15,33 +15,36 @@ const { title, description, currentPath = '/' } = Astro.props;
   <body>
     <div class="site-shell">
       <header class="site-header section-shell">
-        <div class="header-grid">
-          <div class="header-side header-side--left">
-            <a href="/" class="flex items-center gap-3 no-underline text-current">
+        <div class="flex justify-center">
+          <nav class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--layer-1)] p-1.5 shadow-[var(--shadow-soft)]">
+            <a href="/" class="flex items-center gap-3 rounded-full px-3 py-2 no-underline text-current">
               <div class="module-card layer-2 flex h-11 w-11 items-center justify-center rounded-full text-sm font-medium">NW</div>
-              <div class="grid gap-1">
+              <div class="hidden sm:grid gap-1 pr-2">
                 <div class="module-label">HVAC theme</div>
-                <div class="text-sm text-neutral-700">{site.name} / {site.city}</div>
+                <div class="text-sm text-neutral-700">{site.name}</div>
               </div>
             </a>
-          </div>
 
-          <nav class="nav-wrap">
-            <div class="nav-group">
+            <div class="h-8 w-px bg-[var(--border)]"></div>
+
+            <div class="flex items-center gap-1 sm:gap-1.5">
               {nav.map((item) => (
-                <a href={item.href} class:list={['nav-pill', currentPath === item.href && 'is-active']}>
+                <a
+                  href={item.href}
+                  class:list={[
+                    'inline-flex min-h-10 items-center rounded-full px-3.5 text-sm text-[var(--ink)] no-underline transition-colors',
+                    currentPath === item.href ? 'border border-[var(--border)] bg-[var(--layer-2)]' : 'border border-transparent bg-transparent',
+                  ]}
+                >
                   {item.label}
                 </a>
               ))}
+
+              <div class="ml-1 h-8 w-px bg-[var(--border)]"></div>
+
+              <button type="button" class="button-wire ml-1" data-drawer-open>Contact us</button>
             </div>
           </nav>
-
-          <div class="header-side header-side--right">
-            <div class="flex items-center gap-2">
-              <a href={`tel:${site.phone}`} class="button-wire button-wire--ghost">{site.phone}</a>
-              <button type="button" class="button-wire" data-drawer-open>Contact us</button>
-            </div>
-          </div>
         </div>
       </header>
 
