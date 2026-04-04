@@ -16,7 +16,8 @@ export default defineConfig({
   integrations: [
     react(),
     emdash({
-      database: d1({ binding: 'DB', session: 'auto' }),
+      // "auto" uses D1 read-replica sessions; EmDash's anonymous / probe uses raw getDb() and can throw → endless / → /setup redirect. Prefer disabled unless you need replicas.
+      database: d1({ binding: 'DB', session: 'disabled' }),
       storage: r2({ binding: 'MEDIA' }),
     }),
   ],

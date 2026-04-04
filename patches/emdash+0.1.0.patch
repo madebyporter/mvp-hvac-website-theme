@@ -1,0 +1,20 @@
+diff --git a/node_modules/emdash/dist/astro/middleware.mjs b/node_modules/emdash/dist/astro/middleware.mjs
+index af52a74..839a13e 100644
+--- a/node_modules/emdash/dist/astro/middleware.mjs
++++ b/node_modules/emdash/dist/astro/middleware.mjs
+@@ -1521,8 +1521,13 @@ const onRequest = defineMiddleware(async (context, next) => {
+ 				const { getDb } = await import("../loader-fz8Q_3EO.mjs").then((n) => n.r);
+ 				await (await getDb()).selectFrom("_emdash_migrations").selectAll().limit(1).execute();
+ 				setupVerified = true;
+-			} catch {
+-				return context.redirect("/_emdash/admin/setup");
++			} catch (e) {
++				const msg = e instanceof Error ? e.message : String(e);
++				if (msg.toLowerCase().includes("no such table")) {
++					return context.redirect("/_emdash/admin/setup");
++				}
++				console.error("[EmDash] Public-route DB probe failed (treating as initialized):", e);
++				setupVerified = true;
+ 			}
+ 			const response = await next();
+ 			setBaselineSecurityHeaders(response);
