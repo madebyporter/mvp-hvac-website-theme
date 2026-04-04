@@ -16,16 +16,16 @@ const { post } = Astro.props;
   <SiteFrame title={post.title} description={post.excerpt} currentPath="/blog">
     <main class="py-6 md:py-8">
       <article class="section-shell grid gap-4 md:gap-6">
-        <header class="module-card layer-1 rounded-[28px] p-5 md:p-8">
+        <header class="border border-[#cfcfcf] rounded-[12px] shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)] bg-[#ececec] rounded-[28px] p-5 md:p-8">
           <div class="grid gap-3">
-            <div class="eyebrow">{post.category} / {post.date}</div>
-            <h1 class="display-wire max-w-[12ch] text-[clamp(2.5rem,5vw,5rem)]">{post.title}</h1>
-            <p class="copy-wire">{post.excerpt}</p>
+            <div class="text-[11px] leading-none tracking-[0.14em] uppercase text-[#5b5b5b]">{post.category} / {post.date}</div>
+            <h1 class="text-[clamp(2.75rem,6vw,6.5rem)] leading-[0.94] tracking-[-0.055em] font-semibold max-w-[12ch] text-[clamp(2.5rem,5vw,5rem)]">{post.title}</h1>
+            <p class="max-w-[68ch] text-base leading-[1.55] text-[#5b5b5b]">{post.excerpt}</p>
           </div>
         </header>
 
         <section class="grid gap-4 md:grid-cols-[1fr_.34fr]">
-          <div class="module-card layer-1 rounded-[24px] p-5 md:p-8">
+          <div class="border border-[#cfcfcf] rounded-[12px] shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)] bg-[#ececec] rounded-[24px] p-5 md:p-8">
             <div class="grid gap-4 text-[15px] leading-7 text-neutral-700">
               <p>This is a blog detail wireframe. Later, this becomes the template for educational HVAC articles, service explainers, replacement guides, and geo-targeted content.</p>
               <p>The design goal is to keep reading calm and structured: strong typography, good spacing, clear calls to action, and no visual sludge.</p>
@@ -33,10 +33,10 @@ const { post } = Astro.props;
             </div>
           </div>
           <aside class="grid gap-4">
-            <div class="module-card layer-2 rounded-[24px] p-5">
-              <div class="module-label mb-3">Inline CTA</div>
+            <div class="border border-[#cfcfcf] rounded-[12px] shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)] bg-[#e1e1e1] rounded-[24px] p-5">
+              <div class="text-[11px] leading-none tracking-[0.14em] uppercase text-[#5b5b5b] mb-3">Inline CTA</div>
               <div class="text-sm text-neutral-700">Prompt readers into the bottom drawer from useful content, not just hero buttons.</div>
-              <button type="button" class="button-wire mt-4 w-full justify-center" data-drawer-open>Ask about this service</button>
+              <button type="button" class="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full border border-transparent bg-[#3a3a3a] px-4 text-[0.95rem] font-medium text-[#fafafa] no-underline mt-4 w-full justify-center" data-drawer-open>Ask about this service</button>
             </div>
           </aside>
         </section>

@@ -8,24 +8,24 @@ import { services } from '../data/site';
   <SiteFrame title="HVAC Theme / Services" description="Services page wireframe." currentPath="/services">
     <main class="py-6 md:py-8">
       <div class="section-shell grid gap-4 md:gap-6">
-        <section class="module-card layer-1 rounded-[28px] p-5 md:p-8">
+        <section class="border border-[#cfcfcf] rounded-[12px] shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)] bg-[#ececec] rounded-[28px] p-5 md:p-8">
           <div class="grid gap-3">
-            <div class="eyebrow">Services</div>
-            <h1 class="display-wire max-w-[12ch] text-[clamp(2.5rem,5vw,5rem)]">Service architecture built for local search.</h1>
-            <p class="copy-wire">Service pages should feel clean, direct, and location-friendly. Each one can later expand into city/service variants without changing the overall system.</p>
+            <div class="text-[11px] leading-none tracking-[0.14em] uppercase text-[#5b5b5b]">Services</div>
+            <h1 class="text-[clamp(2.75rem,6vw,6.5rem)] leading-[0.94] tracking-[-0.055em] font-semibold max-w-[12ch] text-[clamp(2.5rem,5vw,5rem)]">Service architecture built for local search.</h1>
+            <p class="max-w-[68ch] text-base leading-[1.55] text-[#5b5b5b]">Service pages should feel clean, direct, and location-friendly. Each one can later expand into city/service variants without changing the overall system.</p>
           </div>
         </section>
 
-        <section class="grid-modules two-up">
+        <section class="grid gap-4 md:grid-cols-2">
           {services.map((service) => (
-            <article class="module-card layer-1 rounded-[24px] p-5 md:p-6">
-              <div class="module-label mb-3">Service</div>
-              <h2 class="heading-wire text-[clamp(1.5rem,2vw,2.2rem)]">{service.name}</h2>
+            <article class="border border-[#cfcfcf] rounded-[12px] shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)] bg-[#ececec] rounded-[24px] p-5 md:p-6">
+              <div class="text-[11px] leading-none tracking-[0.14em] uppercase text-[#5b5b5b] mb-3">Service</div>
+              <h2 class="text-[clamp(1.5rem,2vw,2.5rem)] leading-[0.98] tracking-[-0.045em] font-semibold text-[clamp(1.5rem,2vw,2.2rem)]">{service.name}</h2>
               <p class="mt-4 text-sm leading-6 text-neutral-700">{service.summary}</p>
               <div class="mt-6 grid gap-3">
-                <div class="module-card layer-2 rounded-2xl p-4">Problem / symptoms module</div>
-                <div class="module-card layer-2 rounded-2xl p-4">Process / what to expect module</div>
-                <div class="module-card layer-2 rounded-2xl p-4">Trust + CTA module</div>
+                <div class="border border-[#cfcfcf] rounded-[12px] shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)] bg-[#e1e1e1] rounded-2xl p-4">Problem / symptoms module</div>
+                <div class="border border-[#cfcfcf] rounded-[12px] shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)] bg-[#e1e1e1] rounded-2xl p-4">Process / what to expect module</div>
+                <div class="border border-[#cfcfcf] rounded-[12px] shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)] bg-[#e1e1e1] rounded-2xl p-4">Trust + CTA module</div>
               </div>
             </article>
           ))}
