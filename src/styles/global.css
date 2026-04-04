@@ -124,6 +124,30 @@ html.drawer-open body {
   color: var(--ink);
 }
 
+.header-grid {
+  display: grid;
+  gap: 16px;
+  align-items: center;
+}
+
+.header-side {
+  display: flex;
+}
+
+.header-side--left {
+  justify-content: flex-start;
+}
+
+.header-side--right {
+  justify-content: flex-end;
+}
+
+@media (min-width: 768px) {
+  .header-grid {
+    grid-template-columns: minmax(320px, 1fr) auto minmax(320px, 1fr);
+  }
+}
+
 .nav-wrap {
   display: flex;
   justify-content: center;
