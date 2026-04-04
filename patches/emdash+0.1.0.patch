@@ -1,5 +1,5 @@
 diff --git a/node_modules/emdash/dist/astro/middleware.mjs b/node_modules/emdash/dist/astro/middleware.mjs
-index af52a74..839a13e 100644
+index af52a74..f5b2fbe 100644
 --- a/node_modules/emdash/dist/astro/middleware.mjs
 +++ b/node_modules/emdash/dist/astro/middleware.mjs
 @@ -1521,8 +1521,13 @@ const onRequest = defineMiddleware(async (context, next) => {
@@ -9,8 +9,8 @@ index af52a74..839a13e 100644
 -			} catch {
 -				return context.redirect("/_emdash/admin/setup");
 +			} catch (e) {
-+				const msg = e instanceof Error ? e.message : String(e);
-+				if (msg.toLowerCase().includes("no such table")) {
++				const msg = (e instanceof Error ? e.message : String(e)).toLowerCase();
++				if (msg.includes("no such table") && msg.includes("_emdash_migrations")) {
 +					return context.redirect("/_emdash/admin/setup");
 +				}
 +				console.error("[EmDash] Public-route DB probe failed (treating as initialized):", e);

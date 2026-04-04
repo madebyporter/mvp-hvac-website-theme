@@ -14,7 +14,7 @@
     {
       "binding": "DB",
       "database_name": "hvac-mvp-db"
-      // Add after first D1 create, or from dashboard: "database_id": "your-d1-uuid"
+      // Set database_id from Dashboard → D1 → hvac-mvp-db so prod always hits the DB you migrated (name-only can be ambiguous).
     }
   ],
   "r2_buckets": [
