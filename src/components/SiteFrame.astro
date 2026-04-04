@@ -13,32 +13,34 @@ const { title, description, currentPath = '/' } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <div class="site-shell">
-      <header class="site-header section-shell">
+    <div class="min-h-screen">
+      <header class="sticky top-6 z-40 mx-auto w-full max-w-[1280px] px-4 md:px-6">
         <div class="flex justify-center">
-          <nav class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--layer-1)] p-1.5 shadow-[var(--shadow-soft)]">
-            <a href="/" class="inline-flex h-11 w-28 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--layer-2)] text-sm font-medium text-[var(--ink)] no-underline">
+          <nav class="inline-flex items-center gap-2 rounded-full border border-[#cfcfcf] bg-[#ececec] p-1.5 shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)] backdrop-blur">
+            <a href="/" class="inline-flex h-11 w-28 items-center justify-center rounded-full border border-[#cfcfcf] bg-[#e1e1e1] text-sm font-medium text-[#141414] no-underline">
               NW
             </a>
 
-            <div class="h-8 w-px bg-[var(--border)]"></div>
+            <div class="h-8 w-px bg-[#cfcfcf]"></div>
 
             <div class="flex items-center gap-1 sm:gap-1.5">
               {nav.map((item) => (
                 <a
                   href={item.href}
                   class:list={[
-                    'inline-flex min-h-10 items-center rounded-full px-3.5 text-sm text-[var(--ink)] no-underline transition-colors',
-                    currentPath === item.href ? 'border border-[var(--border)] bg-[var(--layer-2)]' : 'border border-transparent bg-transparent',
+                    'inline-flex min-h-10 items-center rounded-full px-3.5 text-sm text-[#141414] no-underline transition-colors',
+                    currentPath === item.href ? 'border border-[#cfcfcf] bg-[#e1e1e1]' : 'border border-transparent bg-transparent',
                   ]}
                 >
                   {item.label}
                 </a>
               ))}
 
-              <div class="ml-1 h-8 w-px bg-[var(--border)]"></div>
+              <div class="ml-1 h-8 w-px bg-[#cfcfcf]"></div>
 
-              <button type="button" class="button-wire ml-1" data-drawer-open>Contact us</button>
+              <button type="button" class="inline-flex h-11 w-28 items-center justify-center rounded-full border border-transparent bg-[#3a3a3a] px-4 text-[0.95rem] font-medium text-[#fafafa]" data-drawer-open>
+                Contact us
+              </button>
             </div>
           </nav>
         </div>
@@ -46,16 +48,16 @@ const { title, description, currentPath = '/' } = Astro.props;
 
       <slot />
 
-      <footer class="section-shell pb-6 md:pb-8">
-        <div class="module-card layer-1 rounded-[24px] p-5 md:p-6">
+      <footer class="mx-auto w-full max-w-[1280px] px-4 pb-6 md:px-6 md:pb-8">
+        <div class="rounded-[24px] border border-[#cfcfcf] bg-[#ececec] p-5 shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)] md:p-6">
           <div class="grid gap-4 md:grid-cols-[1fr_auto_auto] md:items-end">
             <div class="grid gap-2">
-              <div class="module-label">Footer module</div>
+              <div class="text-[11px] leading-none tracking-[0.14em] uppercase text-[#5b5b5b]">Footer module</div>
               <div class="text-xl font-medium tracking-[-0.03em]">Minimal HVAC website theme.</div>
-              <p class="copy-wire">Built to be reskinned per brand without changing the core layout logic.</p>
+              <p class="max-w-[68ch] text-base leading-[1.55] text-[#5b5b5b]">Built to be reskinned per brand without changing the core layout logic.</p>
             </div>
             <div class="text-sm text-neutral-700">Service area: {site.serviceArea.join(' • ')}</div>
-            <button type="button" class="button-wire" data-drawer-open>Open contact drawer</button>
+            <button type="button" class="inline-flex min-h-11 items-center justify-center rounded-full bg-[#3a3a3a] px-4 text-[0.95rem] font-medium text-[#fafafa]" data-drawer-open>Open contact drawer</button>
           </div>
         </div>
       </footer>
