@@ -1,11 +1,32 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "hvac-mvp-theme",
-  // ... other keys the template already has ...
+  "name": "mvp-hvac-website-theme",
+  "main": "./src/worker.ts",
+  "compatibility_date": "2026-04-04",
+  "compatibility_flags": ["nodejs_compat"],
   "kv_namespaces": [
     {
       "binding": "SESSION",
       "id": "01dd84fd7ca14e86990dabb3894319fa"
     }
-  ]
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "hvac-mvp-db"
+      // Add after first D1 create, or from dashboard: "database_id": "your-d1-uuid"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "MEDIA",
+      "bucket_name": "hvac-mvp-media"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+  // Dynamic Workers (sandboxed plugins) — requires Workers Paid. Uncomment if needed:
+  // "worker_loaders": [{ "binding": "LOADER" }]
 }
+
