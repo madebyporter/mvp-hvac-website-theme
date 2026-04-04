@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "hvac-mvp-theme",
+  // ... other keys the template already has ...
+  "kv_namespaces": [
+    {
+      "binding": "SESSION",
+      "id": "01dd84fd7ca14e86990dabb3894319fa"
+    }
+  ]
+}

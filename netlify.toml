@@ -1,0 +1,10 @@
+# Astro SSR + prerendered routes (see astro.config.mjs).
+# Publish root must be `dist` after @astrojs/netlify build — not `dist/client`
+# (that layout is what @astrojs/node produced and caused site-wide 404s on Netlify).
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
