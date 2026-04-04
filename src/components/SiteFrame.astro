@@ -1,0 +1,63 @@
+---
+import ContactDrawer from './ContactDrawer.astro';
+import { nav, site } from '../data/site';
+
+const { title, description, currentPath = '/' } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header section-shell">
+        <div class="module-card layer-1 rounded-[20px] px-4 py-4 md:px-6 md:py-5">
+          <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <a href="/" class="flex items-center gap-3 no-underline text-current">
+              <div class="module-card layer-2 flex h-11 w-11 items-center justify-center rounded-full text-sm font-medium">NW</div>
+              <div class="grid gap-1">
+                <div class="module-label">HVAC theme</div>
+                <div class="text-sm text-neutral-700">{site.name} / {site.city}</div>
+              </div>
+            </a>
+
+            <nav class="flex flex-wrap gap-2 text-sm text-neutral-800">
+              {nav.map((item) => (
+                <a href={item.href} class:list={['nav-pill', currentPath === item.href && 'is-active']}>
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+
+            <div class="flex items-center gap-2">
+              <a href={`tel:${site.phone}`} class="button-wire button-wire--ghost">{site.phone}</a>
+              <button type="button" class="button-wire" data-drawer-open>Contact us</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <slot />
+
+      <footer class="section-shell pb-6 md:pb-8">
+        <div class="module-card layer-1 rounded-[24px] p-5 md:p-6">
+          <div class="grid gap-4 md:grid-cols-[1fr_auto_auto] md:items-end">
+            <div class="grid gap-2">
+              <div class="module-label">Footer module</div>
+              <div class="text-xl font-medium tracking-[-0.03em]">Minimal HVAC website theme.</div>
+              <p class="copy-wire">Built to be reskinned per brand without changing the core layout logic.</p>
+            </div>
+            <div class="text-sm text-neutral-700">Service area: {site.serviceArea.join(' • ')}</div>
+            <button type="button" class="button-wire" data-drawer-open>Open contact drawer</button>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <ContactDrawer />
+  </body>
+</html>
