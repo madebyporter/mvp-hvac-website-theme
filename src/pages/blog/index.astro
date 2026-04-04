@@ -8,19 +8,19 @@ import { posts } from '../../data/site';
   <SiteFrame title="HVAC Theme / Blog" description="Blog index wireframe." currentPath="/blog">
     <main class="py-6 md:py-8">
       <div class="section-shell grid gap-4 md:gap-6">
-        <section class="border border-[#cfcfcf] rounded-[12px] shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)] bg-[#ececec] rounded-[28px] p-5 md:p-8">
-          <div class="text-[11px] leading-none tracking-[0.14em] uppercase text-[#5b5b5b] mb-3">Blog index</div>
-          <h1 class="text-[clamp(2.75rem,6vw,6.5rem)] leading-[0.94] tracking-[-0.055em] font-semibold max-w-[12ch] text-[clamp(2.5rem,5vw,5rem)]">Blog structure for SEO, GEO, and trust.</h1>
-          <p class="max-w-[68ch] text-base leading-[1.55] text-[#5b5b5b] mt-4">This is where long-tail search, location relevance, and educational conversion content lives.</p>
+        <section class="module-card layer-1 rounded-[28px] p-5 md:p-8">
+          <div class="eyebrow mb-3">Blog index</div>
+          <h1 class="display-wire max-w-[12ch] text-[clamp(2.5rem,5vw,5rem)]">Blog structure for SEO, GEO, and trust.</h1>
+          <p class="copy-wire mt-4">This is where long-tail search, location relevance, and educational conversion content lives.</p>
         </section>
 
         <section class="grid gap-4">
           {posts.map((post) => (
-            <a href={`/blog/${post.slug}`} class="border border-[#cfcfcf] rounded-[12px] shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)] bg-[#ececec] rounded-[24px] p-5 md:p-6 no-underline text-current">
+            <a href={`/blog/${post.slug}`} class="module-card layer-1 rounded-[24px] p-5 md:p-6 no-underline text-current">
               <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div class="grid gap-2">
-                  <div class="text-[11px] leading-none tracking-[0.14em] uppercase text-[#5b5b5b]">{post.category}</div>
-                  <h2 class="text-[clamp(1.5rem,2vw,2.5rem)] leading-[0.98] tracking-[-0.045em] font-semibold text-[clamp(1.5rem,2vw,2.25rem)]">{post.title}</h2>
+                  <div class="module-label">{post.category}</div>
+                  <h2 class="heading-wire text-[clamp(1.5rem,2vw,2.25rem)]">{post.title}</h2>
                   <p class="text-sm leading-6 text-neutral-700">{post.excerpt}</p>
                 </div>
                 <div class="text-sm text-neutral-600">{post.date}</div>

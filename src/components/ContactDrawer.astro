@@ -2,48 +2,48 @@
 const { compact = false } = Astro.props;
 ---
 
-<div id="contact-drawer" class="pointer-events-none fixed inset-0 z-50 opacity-0 transition-opacity duration-200" aria-hidden="true">
-  <div class="absolute inset-0 bg-[rgba(12,12,12,0.24)]" data-drawer-close></div>
-  <div class="absolute inset-x-4 bottom-4 max-h-[calc(100vh-32px)] translate-y-6 overflow-auto rounded-[28px] border border-[#cfcfcf] bg-[#ececec] p-5 shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)] transition-transform duration-200 md:inset-x-6 md:bottom-6 md:p-6" data-drawer-panel>
-    <div class="mx-auto mb-4 h-1 w-12 rounded-full bg-[#b3b3b3]"></div>
+<div id="contact-drawer" class="drawer-shell" aria-hidden="true">
+  <div class="drawer-backdrop" data-drawer-close></div>
+  <div class="drawer-panel module-card layer-1">
+    <div class="drawer-handle"></div>
     <div class="flex items-start justify-between gap-4">
       <div class="grid gap-2">
-        <div class="text-[11px] leading-none tracking-[0.14em] uppercase text-[#5b5b5b]">Contact drawer</div>
-        <h2 class="text-[clamp(1.5rem,2vw,2.25rem)] font-semibold leading-[0.98] tracking-[-0.045em]">Start with chat. Switch to form if you want.</h2>
-        <p class="max-w-[60ch] text-base leading-[1.55] text-[#5b5b5b]">Default the contact experience to an agentic intake flow, but keep a classic quote request form one tap away for users who just want the standard route.</p>
+        <div class="eyebrow">Contact drawer</div>
+        <h2 class="heading-wire text-[clamp(1.5rem,2vw,2.25rem)]">Start with chat. Switch to form if you want.</h2>
+        <p class="copy-wire max-w-[60ch]">Default the contact experience to an agentic intake flow, but keep a classic quote request form one tap away for users who just want the standard route.</p>
       </div>
-      <button class="flex h-10 w-10 items-center justify-center rounded-full border border-[#cfcfcf] bg-[#e1e1e1] text-2xl leading-none" type="button" data-drawer-close aria-label="Close contact drawer">×</button>
+      <button class="close-button" type="button" data-drawer-close aria-label="Close contact drawer">×</button>
     </div>
 
-    <div class="mt-6 inline-flex rounded-full border border-[#cfcfcf] bg-[#e1e1e1] p-1 text-sm">
-      <button class="rounded-full bg-[#3a3a3a] px-4 py-2 text-[#fafafa]" type="button" data-tab-target="chat">Agentic chat</button>
-      <button class="rounded-full px-4 py-2 text-[#141414]" type="button" data-tab-target="form">Classic form</button>
+    <div class="mt-6 inline-flex rounded-full border border-[var(--border)] bg-[var(--layer-2)] p-1 text-sm">
+      <button class="toggle-pill is-active" type="button" data-tab-target="chat">Agentic chat</button>
+      <button class="toggle-pill" type="button" data-tab-target="form">Classic form</button>
     </div>
 
     <div class="mt-6 grid gap-4 md:grid-cols-[1.15fr_.85fr]">
-      <section class="rounded-[20px] border border-[#cfcfcf] bg-[#e1e1e1] p-4 shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)] md:p-5" data-tab-panel="chat">
-        <div class="mb-4 text-[11px] leading-none tracking-[0.14em] uppercase text-[#5b5b5b]">Chat-first intake</div>
+      <section class="tab-panel is-active module-card layer-2 rounded-[20px] p-4 md:p-5" data-tab-panel="chat">
+        <div class="module-label mb-4">Chat-first intake</div>
         <div class="grid gap-3">
-          <div class="max-w-[42ch] rounded-[18px] bg-[#ececec] px-4 py-3 text-sm leading-6">What do you need help with today?</div>
-          <div class="max-w-[42ch] rounded-[18px] bg-[#c9c9c9] px-4 py-3 text-sm leading-6">AC not cooling well upstairs.</div>
-          <div class="max-w-[42ch] rounded-[18px] bg-[#ececec] px-4 py-3 text-sm leading-6">Got it. Want repair, tune-up, or quote options?</div>
+          <div class="chat-bubble chat-bubble--system">What do you need help with today?</div>
+          <div class="chat-bubble chat-bubble--user">AC not cooling well upstairs.</div>
+          <div class="chat-bubble chat-bubble--system">Got it. Want repair, tune-up, or quote options?</div>
           <div class="grid gap-2 md:grid-cols-3">
-            <div class="rounded-2xl border border-[#cfcfcf] bg-[#ececec] px-4 py-3 text-sm shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)]">Repair</div>
-            <div class="rounded-2xl border border-[#cfcfcf] bg-[#ececec] px-4 py-3 text-sm shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)]">Tune-up</div>
-            <div class="rounded-2xl border border-[#cfcfcf] bg-[#ececec] px-4 py-3 text-sm shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)]">Replacement quote</div>
+            <div class="module-card layer-1 rounded-2xl px-4 py-3 text-sm">Repair</div>
+            <div class="module-card layer-1 rounded-2xl px-4 py-3 text-sm">Tune-up</div>
+            <div class="module-card layer-1 rounded-2xl px-4 py-3 text-sm">Replacement quote</div>
           </div>
         </div>
       </section>
 
-      <section class="hidden rounded-[20px] border border-[#cfcfcf] bg-[#e1e1e1] p-4 shadow-[0_1px_0_rgba(0,0,0,0.03),0_0_0_1px_rgba(0,0,0,0.03)] md:p-5" data-tab-panel="form">
-        <div class="mb-4 text-[11px] leading-none tracking-[0.14em] uppercase text-[#5b5b5b]">Classic quote request</div>
+      <section class="tab-panel module-card layer-2 rounded-[20px] p-4 md:p-5" data-tab-panel="form">
+        <div class="module-label mb-4">Classic quote request</div>
         <div class="grid gap-3">
-          <div class="flex min-h-[52px] items-center rounded-[18px] border border-[#cfcfcf] bg-[#ececec] px-4 text-sm text-[#5b5b5b]">Name</div>
-          <div class="flex min-h-[52px] items-center rounded-[18px] border border-[#cfcfcf] bg-[#ececec] px-4 text-sm text-[#5b5b5b]">Email + phone</div>
-          <div class="flex min-h-[52px] items-center rounded-[18px] border border-[#cfcfcf] bg-[#ececec] px-4 text-sm text-[#5b5b5b]">Zip code / city</div>
-          <div class="flex min-h-[52px] items-center rounded-[18px] border border-[#cfcfcf] bg-[#ececec] px-4 text-sm text-[#5b5b5b]">Service needed</div>
-          <div class="flex h-24 items-start rounded-[18px] border border-[#cfcfcf] bg-[#ececec] px-4 pt-4 text-sm text-[#5b5b5b]">Tell us what’s going on</div>
-          <button class="inline-flex min-h-11 items-center justify-center rounded-full bg-[#3a3a3a] px-4 text-[0.95rem] font-medium text-[#fafafa]" type="button">Request quote</button>
+          <div class="form-field">Name</div>
+          <div class="form-field">Email + phone</div>
+          <div class="form-field">Zip code / city</div>
+          <div class="form-field">Service needed</div>
+          <div class="form-field h-24 items-start pt-4">Tell us what’s going on</div>
+          <button class="button-wire w-full justify-center">Request quote</button>
         </div>
       </section>
     </div>
@@ -53,20 +53,15 @@ const { compact = false } = Astro.props;
 <script>
   const root = document;
   const drawer = root.querySelector('#contact-drawer');
-  const panel = root.querySelector('[data-drawer-panel]');
   const openers = root.querySelectorAll('[data-drawer-open]');
   const closers = root.querySelectorAll('[data-drawer-close]');
   const tabButtons = root.querySelectorAll('[data-tab-target]');
   const tabPanels = root.querySelectorAll('[data-tab-panel]');
 
   const setOpen = (open) => {
-    if (!drawer || !panel) return;
+    if (!drawer) return;
     drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
-    drawer.classList.toggle('pointer-events-none', !open);
-    drawer.classList.toggle('opacity-0', !open);
-    panel.classList.toggle('translate-y-6', !open);
-    document.documentElement.classList.toggle('overflow-hidden', open);
-    document.body.classList.toggle('overflow-hidden', open);
+    document.documentElement.classList.toggle('drawer-open', open);
   };
 
   openers.forEach((button) => button.addEventListener('click', () => setOpen(true)));
@@ -75,15 +70,8 @@ const { compact = false } = Astro.props;
   tabButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const target = button.getAttribute('data-tab-target');
-      tabButtons.forEach((item) => {
-        const active = item === button;
-        item.classList.toggle('bg-[#3a3a3a]', active);
-        item.classList.toggle('text-[#fafafa]', active);
-        item.classList.toggle('text-[#141414]', !active);
-      });
-      tabPanels.forEach((panel) => {
-        panel.classList.toggle('hidden', panel.getAttribute('data-tab-panel') !== target);
-      });
+      tabButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+      tabPanels.forEach((panel) => panel.classList.toggle('is-active', panel.getAttribute('data-tab-panel') === target));
     });
   });
 </script>
