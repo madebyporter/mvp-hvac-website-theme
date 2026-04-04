@@ -1,0 +1,39 @@
+---
+description: HVAC Astro theme — layout, Tailwind, copy, SEO/GEO, EmDash
+globs: src/**/*.astro,src/**/*.ts,src/styles/**/*.css,astro.config.mjs
+alwaysApply: false
+---
+
+# HVAC template rules
+
+## Layout
+
+- **Full-width sections**: Use `w-full` bands; optional `border-b border-border` or `bg-*` per section.
+- **Inner shell**: `mx-auto w-[90%] max-w-none` (or `px-[5vw]`)—wide editorial gutters, not a tight `max-w-7xl` box around the whole page.
+- **Grid**: Inside the shell, use `grid grid-cols-12` and `col-span-*` with responsive breakpoints for alignment.
+
+## Blocks and cards
+
+- **Use cards on purpose**: Service tiles, CTAs in sidebars, discrete list items—OK with `rounded-2xl border border-border bg-surface`.
+- **Do not** wrap hero headlines or long intros in a card; use typography and spacing on the section background.
+
+## Styling
+
+- **Tailwind utilities only** on components. Wireframe colors live in `@theme` in `src/styles/global.css` (`background`, `surface`, `foreground`, `border`, `inverse`, etc.).
+- **Spacing**: Prefer the 4px-based Tailwind scale (`gap-4`, `py-16`, `mt-6`, …) consistently.
+- **Type**: Inter via Google Fonts in `Layout.astro`; `font-sans` stack. Headings: `font-semibold`, tight `tracking`, responsive `text-[clamp(...)]`.
+
+## Copy and SEO
+
+- **No template meta-copy** on customer-facing pages (no “SEO module”, “wireframe”, “GEO pattern” as visible text).
+- **No fake metrics** (made-up star ratings, customer counts) unless they are real for the deployed brand.
+- **One `<h1>`** per page; meaningful `title` and `description` via `Layout` props; internal links to `/services`, `/blog`, contact drawer.
+- Centralize NAP and service blurbs in `src/data/hvac-site-data.ts` (or EmDash when wired).
+
+## EmDash
+
+- Integration in `astro.config.mjs`; live collection in `src/live.config.ts`; API and media under `/_emdash/`. Site pages use `export const prerender = true` where static HTML is desired.
+
+## Contact
+
+- **Contact drawer**: Chat (agent placeholder) + real labeled form fields; `action` on the form is a deployment hook.

@@ -2,45 +2,74 @@
 export const prerender = true;
 
 import Layout from '../../layouts/Layout.astro';
-import SiteFrame from '../../components/SiteFrame.astro';
-import { posts } from '../../data/site';
+import { posts } from '../../data/hvac-site-data';
 
 export function getStaticPaths() {
   return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
 }
 
 const { post } = Astro.props;
+
+const bodies: Record<string, string[]> = {
+  'when-ac-repair-vs-replace': [
+    'If your central air is more than twelve to fifteen years old, repair bills can approach a meaningful fraction of replacement cost—especially if the system still uses older refrigerant or the outdoor coil is corroding.',
+    'A good rule of thumb: multiply the quoted repair by the equipment age. If the number creeps past a few thousand dollars, ask for load calculations and efficiency comparisons on a new system, not just a patch.',
+    'We document pressures, temperatures, and amp draws so you can see why we recommend repair versus swap. Rebates and financing change seasonally; we will note what applies when we quote.',
+  ],
+  'spring-hvac-checklist-cleveland': [
+    'Before you switch the thermostat to cool, clear a two-foot zone around the outdoor unit and glance at the disconnect for wasp nests—lake humidity makes Cleveland coils work harder than inland climates.',
+    'Inside, swap the filter to the size printed on the existing frame (never guess), and if you have a humidifier bypass, close the summer damper if your model uses one.',
+    'Schedule a tune-up in April or early May: capacitors and contactors fail under the first heat wave, and a planned visit beats a 90-degree weekend waitlist.',
+  ],
+  'furnace-airflow-warning-signs': [
+    'Long run times with a lukewarm house often trace to airflow: dirty filters, stuck dampers, or a blower motor working against a blocked return.',
+    'Whistling at registers, doors that slam when the fan starts, or cold spots on upper floors can mean duct leakage or undersized returns—common in pre-1980 builds around the Heights.',
+    'If you smell electrical heat or see the high-limit trip repeatedly, shut the system off and call—those are safety issues, not “wait until Monday” items.',
+  ],
+};
+
+const paragraphs = bodies[post.slug] ?? [
+  'This article is part of the site’s content template. Replace the body with copy from EmDash or your CMS when you connect collections.',
+];
 ---
 
-<Layout title={`HVAC Theme / ${post.title}`} description={post.excerpt}>
-  <SiteFrame title={post.title} description={post.excerpt} currentPath="/blog">
-    <main class="py-6 md:py-8">
-      <article class="section-shell grid gap-4 md:gap-6">
-        <header class="module-card layer-1 rounded-[28px] p-5 md:p-8">
-          <div class="grid gap-3">
-            <div class="eyebrow">{post.category} / {post.date}</div>
-            <h1 class="display-wire max-w-[12ch] text-[clamp(2.5rem,5vw,5rem)]">{post.title}</h1>
-            <p class="copy-wire">{post.excerpt}</p>
-          </div>
-        </header>
+<Layout title={`${post.title} | Blog`} description={post.excerpt} currentPath="/blog">
+  <main>
+    <article class="w-full border-b border-border bg-background">
+      <header class="mx-auto grid w-[90%] max-w-none grid-cols-12 gap-6 py-16 md:gap-8 md:py-20">
+        <div class="col-span-12 lg:col-span-9">
+          <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">
+            {post.category} · {post.date}
+          </p>
+          <h1 class="mt-4 text-[clamp(2rem,4vw,3.25rem)] font-semibold leading-[1.02] tracking-[-0.04em]">
+            {post.title}
+          </h1>
+          <p class="mt-6 max-w-prose text-base leading-relaxed text-foreground-muted">{post.excerpt}</p>
+        </div>
+      </header>
 
-        <section class="grid gap-4 md:grid-cols-[1fr_.34fr]">
-          <div class="module-card layer-1 rounded-[24px] p-5 md:p-8">
-            <div class="grid gap-4 text-[15px] leading-7 text-neutral-700">
-              <p>This is a blog detail wireframe. Later, this becomes the template for educational HVAC articles, service explainers, replacement guides, and geo-targeted content.</p>
-              <p>The design goal is to keep reading calm and structured: strong typography, good spacing, clear calls to action, and no visual sludge.</p>
-              <p>Use the article body to build trust, capture search intent, and route readers into the contact drawer when they’re ready.</p>
-            </div>
+      <div class="mx-auto grid w-[90%] max-w-none grid-cols-12 gap-10 pb-20 md:gap-12 md:pb-28">
+        <div class="col-span-12 max-w-prose lg:col-span-8">
+          <div class="space-y-6 text-[15px] leading-7 text-foreground-muted">
+            {paragraphs.map((p) => <p>{p}</p>)}
           </div>
-          <aside class="grid gap-4">
-            <div class="module-card layer-2 rounded-[24px] p-5">
-              <div class="module-label mb-3">Inline CTA</div>
-              <div class="text-sm text-neutral-700">Prompt readers into the bottom drawer from useful content, not just hero buttons.</div>
-              <button type="button" class="button-wire cursor-pointer whitespace-nowrap mt-4 w-full justify-center" data-drawer-open>Ask about this service</button>
-            </div>
-          </aside>
-        </section>
-      </article>
-    </main>
-  </SiteFrame>
+        </div>
+        <aside class="col-span-12 lg:col-span-4">
+          <div class="rounded-2xl border border-border bg-surface p-5 md:sticky md:top-28">
+            <p class="text-sm font-medium text-foreground">Need help with this?</p>
+            <p class="mt-2 text-sm leading-relaxed text-foreground-muted">
+              Describe what you are seeing—we will route it to the right technician.
+            </p>
+            <button
+              type="button"
+              class="mt-4 inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-full bg-inverse px-4 text-[0.95rem] font-medium text-inverse-foreground"
+              data-drawer-open
+            >
+              Open contact
+            </button>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
 </Layout>

@@ -1,36 +1,67 @@
 ---
+export const prerender = true;
+
 import Layout from '../layouts/Layout.astro';
-import SiteFrame from '../components/SiteFrame.astro';
-import { services } from '../data/site';
+import { services, site } from '../data/hvac-site-data';
 ---
 
-<Layout title="HVAC Theme / Services" description="Services page wireframe.">
-  <SiteFrame title="HVAC Theme / Services" description="Services page wireframe." currentPath="/services">
-    <main class="py-6 md:py-8">
-      <div class="section-shell grid gap-4 md:gap-6">
-        <section class="module-card layer-1 rounded-[28px] p-5 md:p-8">
-          <div class="grid gap-3">
-            <div class="eyebrow">Services</div>
-            <h1 class="display-wire max-w-[12ch] text-[clamp(2.5rem,5vw,5rem)]">Service architecture built for local search.</h1>
-            <p class="copy-wire">Service pages should feel clean, direct, and location-friendly. Each one can later expand into city/service variants without changing the overall system.</p>
-          </div>
-        </section>
-
-        <section class="grid-modules two-up">
-          {services.map((service) => (
-            <article class="module-card layer-1 rounded-[24px] p-5 md:p-6">
-              <div class="module-label mb-3">Service</div>
-              <h2 class="heading-wire text-[clamp(1.5rem,2vw,2.2rem)]">{service.name}</h2>
-              <p class="mt-4 text-sm leading-6 text-neutral-700">{service.summary}</p>
-              <div class="mt-6 grid gap-3">
-                <div class="module-card layer-2 rounded-2xl p-4">Problem / symptoms module</div>
-                <div class="module-card layer-2 rounded-2xl p-4">Process / what to expect module</div>
-                <div class="module-card layer-2 rounded-2xl p-4">Trust + CTA module</div>
-              </div>
-            </article>
-          ))}
-        </section>
+<Layout
+  title={`HVAC services | ${site.name}`}
+  description="Air conditioning, heating, maintenance, and commercial HVAC for Cleveland and western suburbs. Repairs, replacements, and tune-ups."
+  currentPath="/services"
+>
+  <main>
+    <section class="w-full border-b border-border bg-background">
+      <div class="mx-auto grid w-[90%] max-w-none grid-cols-12 gap-6 py-16 md:gap-8 md:py-20">
+        <div class="col-span-12 lg:col-span-8">
+          <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">Services</p>
+          <h1 class="mt-4 text-[clamp(2rem,4vw,3.25rem)] font-semibold leading-[1.02] tracking-[-0.04em]">
+            HVAC for homes and businesses west of the Cuyahoga
+          </h1>
+          <p class="mt-6 max-w-prose text-base leading-relaxed text-foreground-muted">
+            Whether you need a same-day refrigerant leak found or a furnace swap before the lake-effect cold sets in, we
+            structure visits so you know what failed, what it costs, and what happens next.
+          </p>
+        </div>
+        <div class="col-span-12 flex items-end lg:col-span-4">
+          <button
+            type="button"
+            class="inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-full bg-inverse px-4 text-[0.95rem] font-medium text-inverse-foreground md:w-auto"
+            data-drawer-open
+          >
+            Book or ask a question
+          </button>
+        </div>
       </div>
-    </main>
-  </SiteFrame>
+    </section>
+
+    <section class="w-full bg-background">
+      <div class="mx-auto w-[90%] max-w-none divide-y divide-border py-12 md:py-16">
+        {services.map((service) => (
+          <article id={service.slug} class="grid grid-cols-12 gap-6 py-12 md:gap-10 md:py-16">
+            <div class="col-span-12 md:col-span-5">
+              <h2 class="text-2xl font-semibold tracking-[-0.035em] md:text-3xl">{service.name}</h2>
+            </div>
+            <div class="col-span-12 md:col-span-7">
+              <p class="text-base leading-relaxed text-foreground-muted">{service.summary}</p>
+              <ul class="mt-6 grid gap-2 text-sm text-foreground-muted">
+                <li class="flex gap-2">
+                  <span class="text-foreground" aria-hidden="true">—</span>
+                  Upfront scope: diagnosis first, then options—not a laundry list of upsells.
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-foreground" aria-hidden="true">—</span>
+                  Parts common to Cleveland installs stocked on trucks when possible.
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-foreground" aria-hidden="true">—</span>
+                  Paper trail: model/serial photos and filter size on the invoice when relevant.
+                </li>
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
 </Layout>

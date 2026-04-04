@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# EmDash / local CMS
+data.db
+data.db-*
+uploads/*
+!uploads/.gitkeep
+.emdash/
