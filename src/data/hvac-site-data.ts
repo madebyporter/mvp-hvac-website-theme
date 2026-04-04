@@ -1,7 +1,6 @@
 export const site = {
   name: 'North Coast Heating & Cooling',
   logoInitials: 'North Coast',
-  /** Demo placeholder — replace with your main line. */
   phoneDisplay: '(216) 555-0142',
   phoneTel: '+12165550142',
   city: 'Cleveland, Ohio',
@@ -26,7 +25,7 @@ export const nav = [
   { href: '/blog', label: 'Blog' },
 ];
 
-/** Hero specials carousel — swap copy, links, and images per deployment. */
+/** Home hero carousel entries. */
 export const heroSpecialSlides = [
   {
     segment: 'Residential',
@@ -100,6 +99,116 @@ export const services = [
       'Rooftop units, split systems, and tenant comfort for offices and retail—scheduled service and after-hours options when downtime costs money.',
   },
 ];
+
+/** About page: mission, team, reviews, credentials, careers. */
+export const aboutContent = {
+  heroBlurb: `${site.name} is a Cleveland-area team built around clear diagnostics, fair options, and techs you can recognize from one visit to the next.`,
+
+  mission: {
+    label: 'Mission',
+    headline: 'Comfort without the runaround',
+    body: [
+      'We help homeowners and light commercial customers stay comfortable without the runaround: show what failed, explain choices in plain language, and only move forward when you are ready.',
+      'Our default is repeat service—right-sized equipment, documented model and serial numbers, and maintenance plans that reduce emergency calls through Ohio humidity and lake-effect cold.',
+    ],
+  },
+
+  history: {
+    title: 'Our story',
+    intro:
+      'Started as a two-truck crew serving the West Side and inner-ring suburbs, we grew by referral—neighbors telling neighbors the invoice matched the conversation.',
+    milestones: [
+      { year: '2008', text: 'Founded with a focus on residential service and honest replacement quotes.' },
+      { year: '2014', text: 'Added commercial maintenance for retail and office rooftops and splits.' },
+      { year: '2020', text: 'Formalized maintenance agreements and same-day priority for plan members in peak season.' },
+      { year: 'Today', text: 'Dispatch from Greater Cleveland with stocked trucks and digital summaries after every visit.' },
+    ],
+  },
+
+  team: [
+    {
+      name: 'Marcus Webb',
+      role: 'Owner & general manager',
+      bio: 'Runs scheduling, estimates, and quality checks—still rides along on complex diagnostics.',
+      imageSrc: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&auto=format&fit=crop&q=80',
+      imageAlt: 'Portrait of a man in business attire',
+    },
+    {
+      name: 'Elena Ruiz',
+      role: 'Service manager',
+      bio: 'Coordinates technicians, parts, and callbacks so follow-through does not fall through the cracks.',
+      imageSrc: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80',
+      imageAlt: 'Portrait of a woman smiling professionally',
+    },
+    {
+      name: 'James Okonkwo',
+      role: 'Lead install technician',
+      bio: 'Furnace and AC changeouts, load verification, and clean handoffs to the service team.',
+      imageSrc: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80',
+      imageAlt: 'Portrait of a man in a casual shirt',
+    },
+    {
+      name: 'Sarah Kim',
+      role: 'Customer experience lead',
+      bio: 'First voice on the phone—windows, reminders, and paperwork so you know what to expect.',
+      imageSrc: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&auto=format&fit=crop&q=80',
+      imageAlt: 'Portrait of a woman with a friendly expression',
+    },
+  ],
+
+  reviews: [
+    {
+      quote:
+        'They explained the capacitor versus the whole condenser, gave a written price for both, and did not push when I chose the repair.',
+      attribution: 'Mike R., Lakewood',
+      rating: 5,
+    },
+    {
+      quote:
+        'We use them for two small retail locations. Invoicing is consistent and they actually show up in the window they quote.',
+      attribution: 'Jennifer K., Rocky River',
+      rating: 5,
+    },
+    {
+      quote:
+        'Furnace died in January. They had the heat running the same day and followed up after the install with filter sizes on the receipt.',
+      attribution: 'David P., Parma',
+      rating: 5,
+    },
+  ],
+
+  awards: [
+    'Ohio licensed & insured HVAC contractor',
+    'EPA Section 608 certified refrigerant handling',
+    'Written estimates on system replacements',
+    'Permits pulled when municipal code requires',
+  ],
+
+  clientCategories: [
+    'Multifamily property managers',
+    'West Side retail & professional offices',
+    'Schools & community buildings',
+    'Single-family homes — Lakewood to Strongsville',
+  ],
+
+  jobs: [
+    {
+      title: 'HVAC service technician',
+      summary:
+        'Diagnose and repair residential and light commercial equipment. Valid driver license and EPA 608 preferred; we support ongoing training.',
+    },
+    {
+      title: 'Install apprentice / helper',
+      summary:
+        'Assist on changeouts, sheet metal, and startup checks. Ideal if you are early-career and want a path to install lead.',
+    },
+    {
+      title: 'Dispatcher / customer service',
+      summary:
+        'Coordinate calls, technician routing, and customer updates. Strong phone skills and calm peak-season pacing matter more than HVAC experience.',
+    },
+  ],
+};
 
 export const posts = [
   {

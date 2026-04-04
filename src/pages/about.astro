@@ -4,48 +4,215 @@ export const prerender = true;
 import Button from '../components/Button.astro';
 import SubpageHero from '../components/SubpageHero.astro';
 import Layout from '../layouts/Layout.astro';
-import { heroSpecialSlides, site } from '../data/hvac-site-data';
+import { aboutContent, heroSpecialSlides, site } from '../data/hvac-site-data';
+
+const stars = (n: number) => '★'.repeat(n);
 ---
 
 <Layout
   title={`About | ${site.name}`}
-  description={`Local HVAC team serving ${site.city} and surrounding suburbs. Repairs, installs, and maintenance with clear communication.`}
+  description="Mission, team, customer reviews, credentials, and careers—Greater Cleveland HVAC with clear communication and licensed technicians."
   currentPath="/about"
 >
   <main>
     <SubpageHero
       eyebrow="About"
-      title="Built for repeat service—not one-call churn"
-      description={`${site.name} focuses on diagnostics you can follow, timelines that respect your schedule, and equipment choices matched to your house—not a generic package. We carry liability coverage and pull permits when code requires it, and we document model and serial numbers so warranty and future service stay simple.`}
+      title="Local HVAC built on straight answers"
+      description={aboutContent.heroBlurb}
       imageSrc={heroSpecialSlides[0].imageSrc}
       imageAlt={heroSpecialSlides[0].imageAlt}
-    />
+    >
+      <div slot="actions" class="pt-2">
+        <Button type="button" class="w-full md:w-auto" data-drawer-open>
+          Talk to our team
+        </Button>
+      </div>
+    </SubpageHero>
 
-    <section class="w-full border-b border-border bg-background">
-      <div class="mx-auto max-w-none p-8">
-        <div class="grid gap-4 sm:grid-cols-2">
-          <div class="rounded-2xl border border-border bg-surface p-4">
-            <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">How we work</p>
-            <p class="mt-3 text-sm leading-relaxed text-foreground-muted">
-              Dispatch confirms the window. Technicians call if traffic shifts it. After the visit you get findings,
-              options, and pricing before we move ahead on non-emergency work.
+    <section class="w-full border-b border-border bg-background" aria-labelledby="mission-heading">
+      <div class="mx-auto max-w-none p-16">
+        <div class="grid grid-cols-12 gap-10 md:gap-12">
+          <div class="col-span-12 lg:col-span-7">
+            <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">
+              {aboutContent.mission.label}
             </p>
+            <h2
+              id="mission-heading"
+              class="mt-2 text-[clamp(1.5rem,2.5vw,2.25rem)] font-semibold leading-tight tracking-[-0.04em]"
+            >
+              {aboutContent.mission.headline}
+            </h2>
+            {
+              aboutContent.mission.body.map((p) => (
+                <p class="mt-6 max-w-prose text-base leading-relaxed text-foreground-muted">{p}</p>
+              ))
+            }
           </div>
-          <div class="rounded-2xl border border-border bg-surface p-4">
-            <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">Who we serve</p>
-            <p class="mt-3 text-sm leading-relaxed text-foreground-muted">
-              Single-family and multifamily residential, plus small retail and office HVAC where downtime matters.
+          <div class="col-span-12 border-t border-border pt-10 lg:col-span-5 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+            <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">
+              {aboutContent.history.title}
             </p>
+            <p class="mt-3 text-base leading-relaxed text-foreground-muted">{aboutContent.history.intro}</p>
+            <ol class="mt-8 space-y-6 border-l border-border pl-6">
+              {
+                aboutContent.history.milestones.map((m) => (
+                  <li class="relative">
+                    <span class="absolute -left-6 top-1.5 h-2 w-2 -translate-x-px rounded-full bg-foreground" aria-hidden="true" />
+                    <p class="text-xs font-semibold uppercase tracking-[0.12em] text-foreground-muted">{m.year}</p>
+                    <p class="mt-1 text-sm leading-relaxed text-foreground-muted">{m.text}</p>
+                  </li>
+                ))
+              }
+            </ol>
           </div>
         </div>
       </div>
     </section>
 
+    <section id="team" class="w-full border-b border-border bg-surface/40" aria-labelledby="team-heading">
+      <div class="mx-auto max-w-none p-16">
+        <div class="col-span-12 mb-10 max-w-2xl">
+          <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">Team</p>
+          <h2 id="team-heading" class="mt-2 text-[clamp(1.5rem,2.5vw,2.25rem)] font-semibold leading-tight tracking-[-0.04em]">
+            People you will see on the truck and on the phone
+          </h2>
+          <p class="mt-4 text-sm leading-relaxed text-foreground-muted">
+            From ownership to dispatch and install leads, these are the people scheduling your visit, answering questions,
+            and standing behind the work on your equipment.
+          </p>
+        </div>
+        <div class="grid grid-cols-12 gap-6 sm:gap-8">
+          {
+            aboutContent.team.map((member) => (
+              <div class="col-span-12 sm:col-span-6 lg:col-span-3">
+                <div class="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-[0_1px_0_rgba(0,0,0,0.03)]">
+                  <img
+                    src={member.imageSrc}
+                    alt={member.imageAlt}
+                    width={600}
+                    height={450}
+                    loading="lazy"
+                    decoding="async"
+                    class="aspect-4/3 w-full object-cover"
+                  />
+                  <div class="flex flex-1 flex-col p-4">
+                    <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">{member.role}</p>
+                    <h3 class="mt-2 text-lg font-semibold tracking-[-0.03em]">{member.name}</h3>
+                    <p class="mt-2 flex-1 text-sm leading-relaxed text-foreground-muted">{member.bio}</p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full border-b border-border bg-background" aria-labelledby="reviews-heading">
+      <div class="mx-auto max-w-none p-16">
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">Reviews</p>
+            <h2 id="reviews-heading" class="mt-2 text-[clamp(1.5rem,2.5vw,2.25rem)] font-semibold leading-tight tracking-[-0.04em]">
+              What neighbors say
+            </h2>
+            <p class="mt-3 max-w-prose text-sm leading-relaxed text-foreground-muted">
+              Recent feedback from homeowners and small businesses across our Greater Cleveland service area.
+            </p>
+          </div>
+        </div>
+        <div class="mt-10 grid grid-cols-12 gap-6 lg:gap-8">
+          {
+            aboutContent.reviews.map((r) => (
+              <blockquote class="col-span-12 lg:col-span-4">
+                <div class="flex h-full flex-col rounded-2xl border border-border bg-surface p-6">
+                  <p class="text-amber-600" aria-label={`${r.rating} out of 5 stars`}>
+                    {stars(r.rating)}
+                  </p>
+                  <p class="mt-4 flex-1 text-sm leading-relaxed text-foreground-muted">“{r.quote}”</p>
+                  <footer class="mt-6 text-xs font-medium text-foreground">— {r.attribution}</footer>
+                </div>
+              </blockquote>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full border-b border-border bg-background" aria-labelledby="awards-heading">
+      <div class="mx-auto max-w-none p-16">
+        <div class="grid grid-cols-12 gap-10 lg:gap-12">
+          <div class="col-span-12 lg:col-span-5">
+            <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">Credentials</p>
+            <h2 id="awards-heading" class="mt-2 text-[clamp(1.5rem,2.5vw,2.25rem)] font-semibold leading-tight tracking-[-0.04em]">
+              Awards & standards
+            </h2>
+            <ul class="mt-6 grid gap-3 text-sm leading-relaxed text-foreground-muted">
+              {aboutContent.awards.map((line) => (
+                <li class="flex gap-2">
+                  <span class="text-foreground" aria-hidden="true">
+                    —
+                  </span>
+                  {line}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="col-span-12 lg:col-span-7">
+            <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">Clients & partners</p>
+            <h3 class="mt-2 text-xl font-semibold tracking-[-0.03em]">Who we work with</h3>
+            <p class="mt-4 text-sm leading-relaxed text-foreground-muted">
+              We maintain and replace equipment from major residential and light-commercial brands, and we keep long-term
+              relationships with property managers, retailers, schools, and houses of worship—plus thousands of
+              single-family homes from the lakefront to the southern suburbs.
+            </p>
+            <ul class="mt-8 flex flex-wrap gap-3">
+              {
+                aboutContent.clientCategories.map((label) => (
+                  <li class="rounded-sm border border-border bg-surface px-4 py-3 text-sm font-medium text-foreground-muted">
+                    {label}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="careers" class="w-full border-b border-border bg-surface/40" aria-labelledby="jobs-heading">
+      <div class="mx-auto max-w-none p-16">
+        <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">Careers</p>
+        <h2 id="jobs-heading" class="mt-2 text-[clamp(1.5rem,2.5vw,2.25rem)] font-semibold leading-tight tracking-[-0.04em]">
+          Open roles
+        </h2>
+        <p class="mt-4 max-w-prose text-sm leading-relaxed text-foreground-muted">
+          We hire for character and train for skill. Send us a note with the role you are interested in—we usually reply
+          within one business day. Prefer to talk it through? Call {site.phoneDisplay} and ask for hiring.
+        </p>
+        <div class="mt-10 grid grid-cols-12 gap-6">
+          {
+            aboutContent.jobs.map((job) => (
+              <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <div class="flex h-full flex-col rounded-2xl border border-border bg-background p-6">
+                  <h3 class="text-lg font-semibold tracking-[-0.03em]">{job.title}</h3>
+                  <p class="mt-3 flex-1 text-sm leading-relaxed text-foreground-muted">{job.summary}</p>
+                  <Button type="button" class="mt-6 w-full" data-drawer-open>
+                    Apply / ask
+                  </Button>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
     <section class="w-full bg-background">
-      <div class="mx-auto max-w-none p-8">
+      <div class="mx-auto max-w-none p-16">
         <p class="max-w-prose text-base leading-relaxed text-foreground-muted">
-          Questions about rebates, filter sizes, or whether to repair versus replace? Use the contact drawer—we would
-          rather steer you right than sell you something you do not need.
+          Questions about rebates, filter sizes, or repair versus replace? We would rather steer you right than sell you
+          something you do not need.
         </p>
         <Button type="button" class="mt-8" data-drawer-open>
           Contact us

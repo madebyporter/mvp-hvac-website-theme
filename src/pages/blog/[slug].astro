@@ -31,7 +31,9 @@ const bodies: Record<string, string[]> = {
 };
 
 const paragraphs = bodies[post.slug] ?? [
-  'This article is part of the site’s content template. Replace the body with copy from EmDash or your CMS when you connect collections.',
+  'Ohio seasons put steady hours on furnaces and air conditioners—humid summers, freeze-thaw winters, and older ductwork all show up in how your home feels room to room.',
+  'If something sounds different, smells odd, or your bills jump without a weather explanation, it is worth a professional look before a small issue becomes a no-heat or no-cool weekend.',
+  'When you are ready, note your equipment age, filter size, and any recent service. That context helps a technician narrow the diagnosis faster when they arrive.',
 ];
 ---
 
@@ -46,7 +48,7 @@ const paragraphs = bodies[post.slug] ?? [
         imageAlt={heroSpecialSlides[0].imageAlt}
       />
 
-      <div class="mx-auto grid max-w-none grid-cols-12 gap-10 border-b border-border bg-background p-8 md:gap-12">
+      <div class="mx-auto grid max-w-none grid-cols-12 gap-10 border-b border-border bg-background p-16 md:gap-12">
         <div class="col-span-12 max-w-prose lg:col-span-8">
           <div class="space-y-6 text-[15px] leading-7 text-foreground-muted">
             {paragraphs.map((p) => <p>{p}</p>)}
