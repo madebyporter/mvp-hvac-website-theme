@@ -3,19 +3,32 @@ import type { HTMLAttributes } from "astro/types";
 
 /**
  * Primary actions match the header Contact control: inverse fill, rounded-xs, h-11.
+ * Pass `href` to render a styled link (same look as the default button).
  */
-type Props = Omit<HTMLAttributes<"button">, "class" | "type"> & {
+type Common = {
   variant?: "primary" | "icon" | "dash" | "tab";
-  type?: "button" | "submit" | "reset";
   class?: string;
 };
 
+type Props =
+  | (Common &
+      Omit<HTMLAttributes<"button">, "class" | "type"> & {
+        href?: undefined;
+        type?: "button" | "submit" | "reset";
+      })
+  | (Common &
+      Omit<HTMLAttributes<"a">, "class" | "href"> & {
+        href: string;
+      });
+
+const raw = Astro.props as Props;
 const {
   variant = "primary",
-  type = "button",
   class: className = "",
+  href,
+  type = "button",
   ...rest
-} = Astro.props as Props;
+} = raw as Common & Record<string, unknown> & { href?: string; type?: string };
 
 const primary =
   "inline-flex h-11 min-w-28 cursor-pointer items-center justify-center rounded-xs border border-transparent bg-inverse px-4 text-[0.95rem] font-medium text-inverse-foreground";
@@ -36,6 +49,22 @@ else if (variant === "dash") variantClass = dash;
 else if (variant === "tab") variantClass = tab;
 ---
 
-<button type={type} class:list={[variantClass, className]} {...rest}>
-  <slot />
-</button>
+{
+  href ? (
+    <a
+      href={href}
+      class:list={[variantClass, className, "no-underline"]}
+      {...rest}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      type={type as "button" | "submit" | "reset"}
+      class:list={[variantClass, className]}
+      {...rest}
+    >
+      <slot />
+    </button>
+  )
+}
