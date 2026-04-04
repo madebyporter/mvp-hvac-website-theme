@@ -12,12 +12,12 @@ const { compact = false } = Astro.props;
         <h2 class="heading-wire text-[clamp(1.5rem,2vw,2.25rem)]">Start with chat. Switch to form if you want.</h2>
         <p class="copy-wire max-w-[60ch]">Default the contact experience to an agentic intake flow, but keep a classic quote request form one tap away for users who just want the standard route.</p>
       </div>
-      <button class="close-button" type="button" data-drawer-close aria-label="Close contact drawer">×</button>
+      <button class="close-button cursor-pointer whitespace-nowrap" type="button" data-drawer-close aria-label="Close contact drawer">×</button>
     </div>
 
     <div class="mt-6 inline-flex rounded-full border border-[var(--border)] bg-[var(--layer-2)] p-1 text-sm">
-      <button class="toggle-pill is-active" type="button" data-tab-target="chat">Agentic chat</button>
-      <button class="toggle-pill" type="button" data-tab-target="form">Classic form</button>
+      <button class="toggle-pill is-active cursor-pointer whitespace-nowrap" type="button" data-tab-target="chat">Agentic chat</button>
+      <button class="toggle-pill cursor-pointer whitespace-nowrap" type="button" data-tab-target="form">Classic form</button>
     </div>
 
     <div class="mt-6 grid gap-4 md:grid-cols-[1.15fr_.85fr]">
@@ -43,7 +43,7 @@ const { compact = false } = Astro.props;
           <div class="form-field">Zip code / city</div>
           <div class="form-field">Service needed</div>
           <div class="form-field h-24 items-start pt-4">Tell us what’s going on</div>
-          <button class="button-wire w-full justify-center">Request quote</button>
+          <button class="button-wire cursor-pointer whitespace-nowrap w-full justify-center">Request quote</button>
         </div>
       </section>
     </div>
