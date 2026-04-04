@@ -9,7 +9,7 @@ alwaysApply: false
 ## Layout
 
 - **Full-width sections**: Use `w-full` bands; optional `border-b border-border` or `bg-*` per section.
-- **Inner shell**: `mx-auto w-[90%] max-w-none` (or `px-[5vw]`)—wide editorial gutters, not a tight `max-w-7xl` box around the whole page.
+- **Inner shell**: `mx-auto p-8 max-w-none` (or `px-[5vw]`)—wide editorial gutters, not a tight `max-w-7xl` box around the whole page.
 - **Grid**: Inside the shell, use `grid grid-cols-12` and `col-span-*` with responsive breakpoints for alignment.
 
 ## Blocks and cards

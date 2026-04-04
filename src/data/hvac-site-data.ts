@@ -1,6 +1,6 @@
 export const site = {
   name: 'North Coast Heating & Cooling',
-  logoInitials: 'NC',
+  logoInitials: 'North Coast',
   /** Demo placeholder — replace with your main line. */
   phoneDisplay: '(216) 555-0142',
   phoneTel: '+12165550142',
@@ -24,6 +24,54 @@ export const nav = [
   { href: '/services', label: 'Services' },
   { href: '/about', label: 'About' },
   { href: '/blog', label: 'Blog' },
+];
+
+/** Hero specials carousel — swap copy, links, and images per deployment. */
+export const heroSpecialSlides = [
+  {
+    segment: 'Residential',
+    title: 'Spring tune-up & safety check',
+    blurb:
+      'Book before the first heat wave: condenser rinse, electrical and refrigerant checks, and a written summary you can keep for your records.',
+    ctaLabel: 'Learn more',
+    ctaHref: '/services#maintenance',
+    imageSrc:
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&auto=format&fit=crop&q=80',
+    imageAlt: 'Bright living space in a modern home',
+  },
+  {
+    segment: 'Commercial',
+    title: 'Rooftop unit maintenance agreements',
+    blurb:
+      'Predictable visits for RTUs and split systems—filter cycles, belt and bearing checks, and priority scheduling when tenants complain.',
+    ctaLabel: 'View commercial HVAC',
+    ctaHref: '/services#commercial-hvac',
+    imageSrc:
+      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&auto=format&fit=crop&q=80',
+    imageAlt: 'Glass office towers downtown',
+  },
+  {
+    segment: 'Industrial',
+    title: 'Planned shutdown & startup support',
+    blurb:
+      'Coordinate with your maintenance window—lockout-ready crews for make-up air, exhaust, and process cooling so you hit production dates.',
+    ctaLabel: 'Industrial capabilities',
+    ctaHref: '/services#commercial-hvac',
+    imageSrc:
+      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&auto=format&fit=crop&q=80',
+    imageAlt: 'Technician reviewing equipment in an industrial setting',
+  },
+  {
+    segment: 'Multi-family',
+    title: 'Seasonal changeover for common areas',
+    blurb:
+      'Hallways, amenity spaces, and boiler rooms—batch visits across your portfolio with one point of contact and consistent reporting.',
+    ctaLabel: 'Talk to our team',
+    ctaHref: '/services',
+    imageSrc:
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&auto=format&fit=crop&q=80',
+    imageAlt: 'Apartment building exterior',
+  },
 ];
 
 export const services = [

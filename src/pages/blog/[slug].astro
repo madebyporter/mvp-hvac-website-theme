@@ -36,7 +36,7 @@ const paragraphs = bodies[post.slug] ?? [
 <Layout title={`${post.title} | Blog`} description={post.excerpt} currentPath="/blog">
   <main>
     <article class="w-full border-b border-border bg-background">
-      <header class="mx-auto grid w-[90%] max-w-none grid-cols-12 gap-6 py-16 md:gap-8 md:py-20">
+      <header class="mx-auto grid max-w-none grid-cols-12 gap-6 p-8 md:gap-8">
         <div class="col-span-12 lg:col-span-9">
           <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">
             {post.category} · {post.date}
@@ -48,21 +48,21 @@ const paragraphs = bodies[post.slug] ?? [
         </div>
       </header>
 
-      <div class="mx-auto grid w-[90%] max-w-none grid-cols-12 gap-10 pb-20 md:gap-12 md:pb-28">
+      <div class="mx-auto grid max-w-none grid-cols-12 gap-10 p-8 md:gap-12">
         <div class="col-span-12 max-w-prose lg:col-span-8">
           <div class="space-y-6 text-[15px] leading-7 text-foreground-muted">
             {paragraphs.map((p) => <p>{p}</p>)}
           </div>
         </div>
         <aside class="col-span-12 lg:col-span-4">
-          <div class="rounded-2xl border border-border bg-surface p-5 md:sticky md:top-28">
+          <div class="rounded-2xl border border-border bg-surface p-4 md:sticky md:top-28">
             <p class="text-sm font-medium text-foreground">Need help with this?</p>
             <p class="mt-2 text-sm leading-relaxed text-foreground-muted">
               Describe what you are seeing—we will route it to the right technician.
             </p>
             <button
               type="button"
-              class="mt-4 inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-full bg-inverse px-4 text-[0.95rem] font-medium text-inverse-foreground"
+              class="mt-4 inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-full bg-inverse p-4 text-[0.95rem] font-medium text-inverse-foreground"
               data-drawer-open
             >
               Open contact

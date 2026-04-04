@@ -12,7 +12,7 @@ import { posts, site } from '../../data/hvac-site-data';
 >
   <main>
     <section class="w-full border-b border-border bg-background">
-      <div class="mx-auto grid w-[90%] max-w-none grid-cols-12 gap-6 py-16 md:gap-8 md:py-20">
+      <div class="mx-auto grid max-w-none grid-cols-12 gap-6 p-8 md:gap-8">
         <div class="col-span-12 lg:col-span-8">
           <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">Blog</p>
           <h1 class="mt-4 text-[clamp(2rem,4vw,3.25rem)] font-semibold leading-[1.02] tracking-[-0.04em]">
@@ -27,9 +27,9 @@ import { posts, site } from '../../data/hvac-site-data';
     </section>
 
     <section class="w-full bg-background">
-      <div class="mx-auto w-[90%] max-w-none divide-y divide-border py-8 md:py-12">
+      <div class="mx-auto max-w-none divide-y divide-border p-8">
         {posts.map((post) => (
-          <article class="py-10 md:py-12">
+          <article class="p-8">
             <a href={`/blog/${post.slug}`} class="group grid grid-cols-12 gap-6 no-underline md:gap-8">
               <div class="col-span-12 md:col-span-8">
                 <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">{post.category}</p>

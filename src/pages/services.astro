@@ -12,7 +12,7 @@ import { services, site } from '../data/hvac-site-data';
 >
   <main>
     <section class="w-full border-b border-border bg-background">
-      <div class="mx-auto grid w-[90%] max-w-none grid-cols-12 gap-6 py-16 md:gap-8 md:py-20">
+      <div class="mx-auto grid max-w-none grid-cols-12 gap-6 p-8 md:gap-8">
         <div class="col-span-12 lg:col-span-8">
           <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">Services</p>
           <h1 class="mt-4 text-[clamp(2rem,4vw,3.25rem)] font-semibold leading-[1.02] tracking-[-0.04em]">
@@ -26,7 +26,7 @@ import { services, site } from '../data/hvac-site-data';
         <div class="col-span-12 flex items-end lg:col-span-4">
           <button
             type="button"
-            class="inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-full bg-inverse px-4 text-[0.95rem] font-medium text-inverse-foreground md:w-auto"
+            class="inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-full bg-inverse p-4 text-[0.95rem] font-medium text-inverse-foreground md:w-auto"
             data-drawer-open
           >
             Book or ask a question
@@ -36,9 +36,9 @@ import { services, site } from '../data/hvac-site-data';
     </section>
 
     <section class="w-full bg-background">
-      <div class="mx-auto w-[90%] max-w-none divide-y divide-border py-12 md:py-16">
+      <div class="mx-auto max-w-none divide-y divide-border p-8">
         {services.map((service) => (
-          <article id={service.slug} class="grid grid-cols-12 gap-6 py-12 md:gap-10 md:py-16">
+          <article id={service.slug} class="grid grid-cols-12 gap-6 p-8 md:gap-10">
             <div class="col-span-12 md:col-span-5">
               <h2 class="text-2xl font-semibold tracking-[-0.035em] md:text-3xl">{service.name}</h2>
             </div>
