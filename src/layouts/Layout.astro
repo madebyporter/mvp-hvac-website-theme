@@ -56,10 +56,10 @@ const {
                   <a
                     href={item.href}
                     class:list={[
-                      "inline-flex h-full items-center rounded-xs px-2 text-sm text-neutral-200 no-underline transition-colors",
+                      "inline-flex h-full items-center rounded-xs px-2 text-sm text-neutral-300 no-underline transition-colors",
                       currentPath === item.href
-                        ? "border border-border bg-surface-muted"
-                        : "border border-transparent bg-transparent hover:bg-neutral-900",
+                        ? "font-bold text-neutral-100"
+                        : "hover:text-neutral-100",
                     ]}
                   >
                     {item.label}
