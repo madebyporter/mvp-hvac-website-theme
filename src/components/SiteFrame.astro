@@ -17,12 +17,8 @@ const { title, description, currentPath = '/' } = Astro.props;
       <header class="site-header section-shell">
         <div class="flex justify-center">
           <nav class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--layer-1)] p-1.5 shadow-[var(--shadow-soft)]">
-            <a href="/" class="flex items-center gap-3 rounded-full px-3 py-2 no-underline text-current">
-              <div class="module-card layer-2 flex h-11 w-11 items-center justify-center rounded-full text-sm font-medium">NW</div>
-              <div class="hidden sm:grid gap-1 pr-2">
-                <div class="module-label">HVAC theme</div>
-                <div class="text-sm text-neutral-700">{site.name}</div>
-              </div>
+            <a href="/" class="inline-flex min-h-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--layer-2)] px-4 text-sm font-medium text-[var(--ink)] no-underline">
+              NW
             </a>
 
             <div class="h-8 w-px bg-[var(--border)]"></div>
