@@ -2,19 +2,10 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
-import node from '@astrojs/node';
-import emdash from 'emdash/astro';
-import { sqlite } from 'emdash/db';
 
 export default defineConfig({
-  output: 'server',
-  adapter: node({ mode: 'standalone' }),
-  integrations: [
-    react(),
-    emdash({
-      database: sqlite({ url: 'file:./.emdash/data/site.db' }),
-    }),
-  ],
+  output: 'static',
+  integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
   },
