@@ -1,6 +1,7 @@
 ---
 export const prerender = true;
 
+import Button from '../components/Button.astro';
 import Layout from '../layouts/Layout.astro';
 import { services, site } from '../data/hvac-site-data';
 ---
@@ -24,13 +25,9 @@ import { services, site } from '../data/hvac-site-data';
           </p>
         </div>
         <div class="col-span-12 flex items-end lg:col-span-4">
-          <button
-            type="button"
-            class="inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-full bg-inverse p-4 text-[0.95rem] font-medium text-inverse-foreground md:w-auto"
-            data-drawer-open
-          >
+          <Button type="button" class="w-full md:w-auto" data-drawer-open>
             Book or ask a question
-          </button>
+          </Button>
         </div>
       </div>
     </section>

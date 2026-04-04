@@ -1,6 +1,7 @@
 ---
 export const prerender = true;
 
+import Button from '../components/Button.astro';
 import Layout from '../layouts/Layout.astro';
 import { site } from '../data/hvac-site-data';
 ---
@@ -50,13 +51,9 @@ import { site } from '../data/hvac-site-data';
           Questions about rebates, filter sizes, or whether to repair versus replace? Use the contact drawer—we would
           rather steer you right than sell you something you do not need.
         </p>
-        <button
-          type="button"
-          class="mt-8 inline-flex min-h-11 cursor-pointer items-center justify-center rounded-full bg-inverse p-4 text-[0.95rem] font-medium text-inverse-foreground"
-          data-drawer-open
-        >
+        <Button type="button" class="mt-8" data-drawer-open>
           Contact us
-        </button>
+        </Button>
       </div>
     </section>
   </main>

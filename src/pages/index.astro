@@ -1,6 +1,7 @@
 ---
 export const prerender = true;
 
+import Button from "../components/Button.astro";
 import Layout from "../layouts/Layout.astro";
 import {
   heroSpecialSlides,
@@ -68,36 +69,36 @@ import {
               >
                 {
                   heroSpecialSlides.map((_, i) => (
-                    <button
+                    <Button
+                      variant="dash"
                       type="button"
                       data-hero-slide-dot={i}
                       aria-label={`Slide ${i + 1} of ${heroSpecialSlides.length}`}
                       aria-current={i === 0 ? "true" : undefined}
-                      class:list={[
-                        "h-0.5 w-8 rounded-full transition-colors duration-300",
-                        i === 0 ? "bg-white" : "bg-white/30",
-                      ]}
+                      class:list={[i === 0 ? "bg-white" : "bg-white/30"]}
                     />
                   ))
                 }
               </div>
               <div class="flex gap-1">
-                <button
+                <Button
+                  variant="icon"
                   type="button"
                   data-hero-slide-prev
-                  class="flex h-9 w-9 items-center justify-center rounded-sm text-lg text-white transition-colors hover:bg-white/10 cursor-pointer"
+                  class="text-lg"
                   aria-label="Previous slide"
                 >
                   ‹
-                </button>
-                <button
+                </Button>
+                <Button
+                  variant="icon"
                   type="button"
                   data-hero-slide-next
-                  class="flex h-9 w-9 items-center justify-center rounded-sm text-lg text-white transition-colors hover:bg-white/10 cursor-pointer"
+                  class="text-lg"
                   aria-label="Next slide"
                 >
                   ›
-                </button>
+                </Button>
               </div>
             </div>
             

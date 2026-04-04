@@ -1,0 +1,41 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+/**
+ * Primary actions match the header Contact control: inverse fill, rounded-xs, h-11.
+ */
+type Props = Omit<HTMLAttributes<"button">, "class" | "type"> & {
+  variant?: "primary" | "icon" | "dash" | "tab";
+  type?: "button" | "submit" | "reset";
+  class?: string;
+};
+
+const {
+  variant = "primary",
+  type = "button",
+  class: className = "",
+  ...rest
+} = Astro.props as Props;
+
+const primary =
+  "inline-flex h-11 min-w-28 cursor-pointer items-center justify-center rounded-xs border border-transparent bg-inverse px-4 text-[0.95rem] font-medium text-inverse-foreground";
+
+const icon =
+  "inline-flex h-11 w-11 min-w-0 shrink-0 cursor-pointer items-center justify-center rounded-xs border border-transparent bg-inverse text-[0.95rem] font-medium text-inverse-foreground";
+
+const dash =
+  "h-0.5 w-8 min-h-0 min-w-8 cursor-pointer rounded-full border-0 p-0 transition-colors duration-300";
+
+/** Selection state follows `aria-selected` (updated by contact-drawer.js). */
+const tab =
+  "inline-flex min-h-10 min-w-0 cursor-pointer items-center justify-center rounded-xs border border-transparent bg-inverse px-4 text-sm font-medium text-inverse-foreground aria-[selected=true]:ring-2 aria-[selected=true]:ring-white/60 aria-[selected=false]:opacity-55 aria-[selected=false]:hover:opacity-100";
+
+let variantClass = primary;
+if (variant === "icon") variantClass = icon;
+else if (variant === "dash") variantClass = dash;
+else if (variant === "tab") variantClass = tab;
+---
+
+<button type={type} class:list={[variantClass, className]} {...rest}>
+  <slot />
+</button>
