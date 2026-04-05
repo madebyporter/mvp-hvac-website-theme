@@ -1,12 +1,12 @@
 (function () {
-  var root = document.getElementById('hero');
+  var root = document.getElementById('slideshow');
   if (!root) return;
 
-  var panels = root.querySelectorAll('[data-hero-slide-panel]');
-  var imgs = root.querySelectorAll('[data-hero-slide-img]');
-  var dots = root.querySelectorAll('[data-hero-slide-dot]');
-  var prev = root.querySelector('[data-hero-slide-prev]');
-  var next = root.querySelector('[data-hero-slide-next]');
+  var panels = root.querySelectorAll('[data-slideshow-panel]');
+  var imgs = root.querySelectorAll('[data-slideshow-img]');
+  var dots = root.querySelectorAll('[data-slideshow-dot]');
+  var prev = root.querySelector('[data-slideshow-prev]');
+  var next = root.querySelector('[data-slideshow-next]');
   var n = panels.length;
   var idx = 0;
   var reduceMotion = false;

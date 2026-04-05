@@ -1,0 +1,28 @@
+---
+interface Props {
+  eyebrow: string;
+  heading: string;
+  class?: string;
+}
+
+const { eyebrow, heading, class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    'col-span-12 flex flex-col justify-between gap-6 md:flex-row md:items-end',
+    className,
+  ]}
+>
+  <div>
+    <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">
+      {eyebrow}
+    </p>
+    <h2
+      class="mt-2 text-[clamp(1.5rem,2.5vw,2.25rem)] font-semibold leading-tight tracking-[-0.04em]"
+    >
+      {heading}
+    </h2>
+  </div>
+  <slot name="actions" />
+</div>

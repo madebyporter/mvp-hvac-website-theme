@@ -32,7 +32,7 @@ alwaysApply: false
 
 ## EmDash
 
-- Integration in `astro.config.mjs`; live collection in `src/live.config.ts`; API and media under `/_emdash/`. Site pages use `export const prerender = true` where static HTML is desired.
+- Integration in `astro.config.mjs`; live collection in `src/live.config.ts`; API and media under `/_emdash/`. Use `prerender = true` for static routes; **`/` and `/services` use `prerender = false`** so `getEmDashCollection` / `getEmDashEntry` read live D1 on the Worker. Apply schema/content via `.emdash/seed.json` (`npm run emdash:seed`).
 
 ## Contact
 

@@ -1,10 +1,28 @@
 ---
-export const prerender = true;
+export const prerender = false;
 
+import BucketGrid from '../components/BucketGrid.astro';
 import Button from '../components/Button.astro';
 import SubpageHero from '../components/SubpageHero.astro';
 import Layout from '../layouts/Layout.astro';
 import { heroSpecialSlides, services, site } from '../data/hvac-site-data';
+import { loadContentTiles } from '../lib/emdash/loadContentTiles';
+import { mapTileData } from '../lib/emdash/mapTile';
+import type { ContentTileProps } from '../lib/emdash/mapTile';
+
+let tiles: ContentTileProps[] = await loadContentTiles('services');
+if (tiles.length === 0) {
+  tiles = services.map((s) =>
+    mapTileData({
+      eyebrow: 'Service',
+      title: s.name,
+      summary: s.summary,
+      link_href: `/services#${s.slug}`,
+      sort_order: 0,
+      placement: 'both',
+    }),
+  );
+}
 ---
 
 <Layout
@@ -26,6 +44,12 @@ import { heroSpecialSlides, services, site } from '../data/hvac-site-data';
         </Button>
       </div>
     </SubpageHero>
+
+    <section class="w-full border-b border-border bg-background">
+      <div class="mx-auto grid max-w-none grid-cols-12 gap-8 p-8 md:p-16">
+        <BucketGrid tiles={tiles} />
+      </div>
+    </section>
 
     <section class="w-full bg-background">
       <div class="mx-auto max-w-none divide-y divide-border p-8">

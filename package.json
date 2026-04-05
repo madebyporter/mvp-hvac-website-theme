@@ -2,6 +2,9 @@
   "name": "mvp-hvac-website-theme",
   "type": "module",
   "version": "0.0.1",
+  "emdash": {
+    "seed": ".emdash/seed.json"
+  },
   "engines": {
     "node": ">=22.12.0"
   },
@@ -20,7 +23,9 @@
     "d1:push:export": "mkdir -p .d1-sync && wrangler d1 export hvac-mvp-db --local --output=./.d1-sync/local.sql",
     "d1:push:apply": "wrangler d1 execute hvac-mvp-db --remote --file=./.d1-sync/local.sql",
     "d1:push:export-data": "mkdir -p .d1-sync && wrangler d1 export hvac-mvp-db --local --no-schema --output=./.d1-sync/local-data.sql",
-    "d1:push:apply-data": "wrangler d1 execute hvac-mvp-db --remote --file=./.d1-sync/local-data.sql"
+    "d1:push:apply-data": "wrangler d1 execute hvac-mvp-db --remote --file=./.d1-sync/local-data.sql",
+    "emdash:seed": "emdash seed .emdash/seed.json --on-conflict update --database ./data.db",
+    "emdash:seed:validate": "emdash seed .emdash/seed.json --validate"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.1.7",

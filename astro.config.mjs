@@ -23,5 +23,19 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    // EmDash admin writes to SQLite (data.db and/or .wrangler D1). Without this, Vite
+    // treats DB churn as source changes and runs full "program reload", kicking you out of forms.
+    server: {
+      watch: {
+        ignored: [
+          '**/data.db',
+          '**/data.db-*',
+          '**/.wrangler/**',
+          '**/uploads/**',
+          '**/.d1-sync/**',
+          '**/emdash-env.d.ts',
+        ],
+      },
+    },
   },
 });

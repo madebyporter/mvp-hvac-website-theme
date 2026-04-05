@@ -1,0 +1,61 @@
+---
+import type { HomePostTeaser } from '../lib/emdash/loadHomePosts';
+
+interface Props {
+  eyebrow: string;
+  heading: string;
+  posts: HomePostTeaser[];
+  viewAllHref?: string;
+  viewAllLabel?: string;
+}
+
+const {
+  eyebrow,
+  heading,
+  posts,
+  viewAllHref = '/blog',
+  viewAllLabel = 'View all articles →',
+} = Astro.props;
+---
+
+<section class="w-full border-b border-border bg-surface/50">
+  <div class="mx-auto grid p-16 max-w-none grid-cols-12 gap-8">
+    <div class="col-span-12 md:col-span-5">
+      <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">
+        {eyebrow}
+      </p>
+      <h2
+        class="mt-2 text-[clamp(1.5rem,2.5vw,2rem)] font-semibold leading-tight tracking-[-0.04em]"
+      >
+        {heading}
+      </h2>
+    </div>
+    <div class="col-span-12 md:col-span-7">
+      <ul class="grid gap-6">
+        {
+          posts.map((post) => (
+            <li class="border-b border-border pb-6 last:border-b-0 last:pb-0">
+              <a href={`/blog/${post.slug}`} class="group block no-underline">
+                <span class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">
+                  {post.category}
+                </span>
+                <span class="mt-2 block text-lg font-semibold tracking-[-0.03em] text-foreground group-hover:underline">
+                  {post.title}
+                </span>
+                <span class="mt-2 block text-sm leading-relaxed text-foreground-muted">
+                  {post.excerpt}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a
+        href={viewAllHref}
+        class="mt-8 inline-flex text-sm font-medium text-foreground no-underline hover:underline"
+      >
+        {viewAllLabel}
+      </a>
+    </div>
+  </div>
+</section>

@@ -5,6 +5,22 @@
 
 import type { ContentBylineCredit, PortableTextBlock } from "emdash";
 
+export interface ContentTile {
+  id: string;
+  slug: string | null;
+  status: string;
+  title: string;
+  eyebrow?: string;
+  summary?: string;
+  link_href: string;
+  sort_order: number;
+  placement?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  bylines?: ContentBylineCredit[];
+}
+
 export interface Page {
   id: string;
   slug: string | null;
@@ -31,9 +47,42 @@ export interface Post {
   bylines?: ContentBylineCredit[];
 }
 
+export interface Slideshow {
+  id: string;
+  slug: string | null;
+  status: string;
+  title: string;
+  title_heading_level: string;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  bylines?: ContentBylineCredit[];
+}
+
+export interface SlideshowSlide {
+  id: string;
+  slug: string | null;
+  status: string;
+  title: string;
+  slideshow: string;
+  segment?: string;
+  blurb?: string;
+  cta_label?: string;
+  cta_href?: string;
+  image?: { id: string; src?: string; alt?: string; width?: number; height?: number };
+  sort_order: number;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  bylines?: ContentBylineCredit[];
+}
+
 declare module "emdash" {
   interface EmDashCollections {
+    content_tile: ContentTile;
     pages: Page;
     posts: Post;
+    slideshow: Slideshow;
+    slideshow_slide: SlideshowSlide;
   }
 }
