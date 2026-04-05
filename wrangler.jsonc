@@ -13,8 +13,8 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "hvac-mvp-db"
-      // Set database_id from Dashboard → D1 → hvac-mvp-db so prod always hits the DB you migrated (name-only can be ambiguous).
+      "database_name": "hvac-mvp-db",
+      "database_id": "08f112e9-03a3-43cc-83cd-2181990fb2ee"
     }
   ],
   "r2_buckets": [

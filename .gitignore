@@ -23,6 +23,9 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# D1 sync snapshots (may contain PII)
+.d1-sync/
+
 # EmDash / local CMS
 data.db
 data.db-*

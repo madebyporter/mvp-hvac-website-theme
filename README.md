@@ -40,6 +40,60 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
+| `npm run deploy`          | Deploy the Worker with Wrangler                    |
+
+## Cloudflare D1: sync prod ↔ local
+
+Production D1 is bound via `database_id` in `wrangler.jsonc`. Local dev uses Wrangler’s embedded SQLite (no separate local database in the dashboard).
+
+Authenticate once:
+
+```sh
+npx wrangler login
+```
+
+SQL snapshots are written under `.d1-sync/` (gitignored; may contain sensitive data).
+
+| Goal | Step 1 | Step 2 |
+|------|--------|--------|
+| **Production → local** (schema + data) | `npm run d1:pull:export` | `npm run d1:pull:apply` |
+| **Production → local** (data only) | `npm run d1:pull:export-data` | `npm run d1:pull:apply-data` |
+| **Local → production** (schema + data) | `npm run d1:push:export` | `npm run d1:push:apply` |
+| **Local → production** (data only) | `npm run d1:push:export-data` | `npm run d1:push:apply-data` |
+
+**Notes**
+
+- Applying a **full** export (`prod.sql` / `local.sql`) on a database that already has the same tables can fail on duplicate `CREATE TABLE` statements. If local schema should match migrations, run `npx wrangler d1 migrations apply hvac-mvp-db --local`, then use the **`*:export-data`** / **`*:apply-data`** scripts to move rows only.
+- Running **`*:apply`** against **remote** executes whatever is in the SQL file. Review `.d1-sync/*.sql` before pushing to production; treat full dumps as potentially destructive.
+
+## Cloudflare R2: sync with S3-compatible tools
+
+Wrangler can put/get single objects (`--local` / `--remote`); for folder-level sync, use the **S3 API** URL from the dashboard: R2 → your bucket → **S3 API**.
+
+Create an R2 API token with read/write access to the bucket (e.g. `hvac-mvp-media` as in `wrangler.jsonc`), then configure AWS CLI (example profile name `r2`):
+
+```sh
+aws configure set aws_access_key_id '<R2_ACCESS_KEY_ID>' --profile r2
+aws configure set aws_secret_access_key '<R2_SECRET_ACCESS_KEY>' --profile r2
+```
+
+Download production objects to a local folder:
+
+```sh
+aws s3 sync "s3://hvac-mvp-media/" ./r2-local-mirror/ \
+  --endpoint-url "https://<YOUR_ACCOUNT_ID>.r2.cloudflarestorage.com" \
+  --profile r2
+```
+
+Upload a local folder to production:
+
+```sh
+aws s3 sync ./r2-local-mirror/ "s3://hvac-mvp-media/" \
+  --endpoint-url "https://<YOUR_ACCOUNT_ID>.r2.cloudflarestorage.com" \
+  --profile r2
+```
+
+Replace `<YOUR_ACCOUNT_ID>` with the subdomain from your R2 S3 API endpoint. Do not commit API keys or token secrets.
 
 ## 👀 Want to learn more?
 
