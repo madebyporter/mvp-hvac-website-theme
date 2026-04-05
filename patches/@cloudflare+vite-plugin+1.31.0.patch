@@ -1,0 +1,13 @@
+diff --git a/node_modules/@cloudflare/vite-plugin/dist/index.mjs b/node_modules/@cloudflare/vite-plugin/dist/index.mjs
+index 0000000..1111111 100644
+--- a/node_modules/@cloudflare/vite-plugin/dist/index.mjs
++++ b/node_modules/@cloudflare/vite-plugin/dist/index.mjs
+@@ -30200,2 +30200,8 @@
+ 				viteDevServer.middlewares.use(createRequestHandler(async (request$1, req) => {
++					if (!sharedContext.miniflare) {
++						return new Response$1(null, {
++							status: 503,
++							statusText: "Dev server initializing"
++						});
++					}
+ 					if (req[kRequestType] === "asset") {

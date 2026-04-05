@@ -25,6 +25,21 @@ export const nav = [
   { href: '/blog', label: 'Blog' },
 ];
 
+/** Homepage section copy and CTAs — landing is code-driven; edit here, not in EmDash PT blocks. */
+export const homeLanding = {
+  /** Matches Slideshow / hero title tag (`h1` for main page title). */
+  slideshowTitleHeadingLevel: 'h1' as 'h1' | 'h2' | 'h3',
+  tilesSectionEyebrow: 'Services',
+  tilesSectionHeading: 'How we help our customers',
+  tilesCtaLabel: 'All services',
+  tilesCtaHref: '/services',
+  tileCardEyebrow: 'Service',
+  blogTeaserEyebrow: 'From the blog',
+  blogTeaserHeading:
+    'Straight answers on equipment and seasons in Northeast Ohio',
+  blogViewAllLabel: 'View all articles →',
+};
+
 /** Home hero carousel entries. */
 export const heroSpecialSlides = [
   {

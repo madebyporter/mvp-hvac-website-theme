@@ -28,6 +28,7 @@
     "emdash:seed:validate": "emdash seed .emdash/seed.json --validate"
   },
   "dependencies": {
+    "@emdash-cms/blocks": "^0.1.0",
     "@astrojs/cloudflare": "^13.1.7",
     "@astrojs/react": "^5.0.2",
     "@emdash-cms/cloudflare": "^0.1.0",

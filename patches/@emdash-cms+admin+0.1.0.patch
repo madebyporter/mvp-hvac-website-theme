@@ -1,0 +1,39 @@
+diff --git a/node_modules/@emdash-cms/admin/dist/index.js b/node_modules/@emdash-cms/admin/dist/index.js
+index 49189f0..fcad9c7 100644
+--- a/node_modules/@emdash-cms/admin/dist/index.js
++++ b/node_modules/@emdash-cms/admin/dist/index.js
+@@ -5762,10 +5762,10 @@ function PluginBlockModal({ block, initialValues, onClose, onInsert }) {
+ 		open: !!block,
+ 		onOpenChange: (open) => !open && onClose(),
+ 		children: /* @__PURE__ */ jsxs(Dialog, {
+-			className: "p-6",
+-			size: "sm",
++			className: "flex max-h-[min(90vh,56rem)] w-[min(56rem,calc(100vw-2rem))] max-w-none flex-col gap-0 p-6 sm:w-[min(64rem,calc(100vw-2rem))]",
++			size: "lg",
+ 			children: [/* @__PURE__ */ jsxs("div", {
+-				className: "flex items-start justify-between gap-4 mb-4",
++				className: "mb-4 flex flex-shrink-0 items-start justify-between gap-4",
+ 				children: [/* @__PURE__ */ jsxs(Dialog.Title, {
+ 					className: "text-lg font-semibold leading-none tracking-tight",
+ 					children: [
+@@ -5788,9 +5788,10 @@ function PluginBlockModal({ block, initialValues, onClose, onInsert }) {
+ 					})
+ 				})]
+ 			}), /* @__PURE__ */ jsxs("form", {
++				className: "flex min-h-0 flex-1 flex-col",
+ 				onSubmit: handleSubmit,
+ 				children: [/* @__PURE__ */ jsx("div", {
+-					className: "py-4 space-y-4",
++					className: "min-h-0 flex-1 space-y-4 overflow-y-auto overflow-x-hidden py-4 pr-1",
+ 					children: hasFields ? block.fields.map((field) => /* @__PURE__ */ jsx(BlockKitField, {
+ 						field,
+ 						pluginId: block.pluginId,
+@@ -5804,7 +5805,7 @@ function PluginBlockModal({ block, initialValues, onClose, onInsert }) {
+ 						onChange: (e) => handleFieldChange("id", e.target.value)
+ 					})
+ 				}), /* @__PURE__ */ jsxs("div", {
+-					className: "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
++					className: "mt-2 flex flex-shrink-0 flex-col-reverse border-t border-kumo-line pt-4 sm:flex-row sm:justify-end sm:space-x-2",
+ 					children: [/* @__PURE__ */ jsx(Button, {
+ 						type: "button",
+ 						variant: "ghost",

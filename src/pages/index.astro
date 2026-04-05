@@ -9,23 +9,18 @@ import SectionIntro from '../components/SectionIntro.astro';
 import Slideshow from '../components/Slideshow.astro';
 import {
   heroSpecialSlides,
+  homeLanding,
   posts as fallbackPosts,
   services,
   site,
 } from '../data/hvac-site-data';
-import { getEmDashEntry } from 'emdash';
-import { asRecord } from '../lib/emdash/asRecord';
-import { loadContentTiles } from '../lib/emdash/loadContentTiles';
 import { loadHomePostTeasers } from '../lib/emdash/loadHomePosts';
-import { loadSlideshow } from '../lib/emdash/loadSlideshow';
 import { mapTileData } from '../lib/emdash/mapTile';
 import type { ContentTileProps } from '../lib/emdash/mapTile';
 import type { HomePostTeaser } from '../lib/emdash/loadHomePosts';
+import type { TitleHeadingLevel } from '../lib/emdash/loadSlideshow';
 
-const slideshowSlug = 'home-featured';
-
-const cmsSlideshow = await loadSlideshow(slideshowSlug);
-const fallbackSlides = heroSpecialSlides.map((s) => ({
+const slides = heroSpecialSlides.map((s) => ({
   segment: s.segment,
   title: s.title,
   blurb: s.blurb,
@@ -35,37 +30,20 @@ const fallbackSlides = heroSpecialSlides.map((s) => ({
   imageAlt: s.imageAlt,
 }));
 
-const slides = cmsSlideshow?.slides?.length ? cmsSlideshow.slides : fallbackSlides;
-const titleHeadingLevel = cmsSlideshow?.titleHeadingLevel ?? 'h1';
+const hl = homeLanding.slideshowTitleHeadingLevel;
+const titleHeadingLevel: TitleHeadingLevel =
+  hl === 'h2' || hl === 'h3' ? hl : 'h1';
 
-let tilesSectionEyebrow = 'Services';
-let tilesSectionHeading = 'How we help our customers';
-let blogTeaserEyebrow = 'From the blog';
-let blogTeaserHeading =
-  'Straight answers on equipment and seasons in Northeast Ohio';
-
-const { entry: homePage } = await getEmDashEntry('pages', 'home');
-if (homePage) {
-  const h = asRecord(homePage.data);
-  if (typeof h.tiles_section_eyebrow === 'string') tilesSectionEyebrow = h.tiles_section_eyebrow;
-  if (typeof h.tiles_section_heading === 'string') tilesSectionHeading = h.tiles_section_heading;
-  if (typeof h.blog_teaser_eyebrow === 'string') blogTeaserEyebrow = h.blog_teaser_eyebrow;
-  if (typeof h.blog_teaser_heading === 'string') blogTeaserHeading = h.blog_teaser_heading;
-}
-
-let tiles: ContentTileProps[] = await loadContentTiles('home');
-if (tiles.length === 0) {
-  tiles = services.map((s) =>
-    mapTileData({
-      eyebrow: 'Service',
-      title: s.name,
-      summary: s.summary,
-      link_href: `/services#${s.slug}`,
-      sort_order: 0,
-      placement: 'both',
-    }),
-  );
-}
+const tiles: ContentTileProps[] = services.map((s) =>
+  mapTileData({
+    eyebrow: homeLanding.tileCardEyebrow,
+    title: s.name,
+    summary: s.summary,
+    link_href: `/services#${s.slug}`,
+    sort_order: 0,
+    placement: 'both',
+  }),
+);
 
 let postTeasers: HomePostTeaser[] = await loadHomePostTeasers(2);
 if (postTeasers.length === 0) {
@@ -93,9 +71,14 @@ if (postTeasers.length === 0) {
 
     <section class="w-full border-b border-border bg-background">
       <div class="mx-auto grid p-16 max-w-none grid-cols-12 gap-8">
-        <SectionIntro eyebrow={tilesSectionEyebrow} heading={tilesSectionHeading}>
+        <SectionIntro
+          eyebrow={homeLanding.tilesSectionEyebrow}
+          heading={homeLanding.tilesSectionHeading}
+        >
           <div slot="actions" class="flex w-full justify-start md:justify-end">
-            <Button href="/services" class="w-fit">All services</Button>
+            <Button href={homeLanding.tilesCtaHref} class="w-fit">
+              {homeLanding.tilesCtaLabel}
+            </Button>
           </div>
         </SectionIntro>
         <BucketGrid tiles={tiles} />
@@ -103,9 +86,10 @@ if (postTeasers.length === 0) {
     </section>
 
     <BlogTeaserSection
-      eyebrow={blogTeaserEyebrow}
-      heading={blogTeaserHeading}
+      eyebrow={homeLanding.blogTeaserEyebrow}
+      heading={homeLanding.blogTeaserHeading}
       posts={postTeasers}
+      viewAllLabel={homeLanding.blogViewAllLabel}
     />
   </main>
 </Layout>
