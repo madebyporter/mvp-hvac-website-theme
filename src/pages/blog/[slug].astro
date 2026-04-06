@@ -55,14 +55,23 @@ const paragraphs = bodies[post.slug] ?? [
           </div>
         </div>
         <aside class="col-span-12 lg:col-span-4">
-          <div class="rounded-2xl border border-border bg-surface p-4 md:sticky md:top-28">
-            <p class="text-sm font-medium text-foreground">Need help with this?</p>
-            <p class="mt-2 text-sm leading-relaxed text-foreground-muted">
-              Describe what you are seeing—we will route it to the right technician.
-            </p>
-            <Button type="button" class="mt-4 w-full" data-drawer-open>
-              Open contact
-            </Button>
+          <div class="md:sticky md:top-28">
+            <div
+              class="flex flex-col gap-2 rounded-sm border border-background bg-white p-4 text-foreground xl:p-8"
+            >
+              <div class="flex flex-col gap-0">
+                <p class="text-xs font-medium uppercase tracking-[0.14em] text-foreground-muted">
+                  Contact
+                </p>
+                <h3 class="text-lg font-semibold tracking-[-0.03em]">Need help with this?</h3>
+              </div>
+              <p class="text-sm leading-relaxed text-foreground-muted">
+                Describe what you are seeing—we will route it to the right technician.
+              </p>
+              <Button type="button" class="mt-4 w-full" data-drawer-open>
+                Contact Us
+              </Button>
+            </div>
           </div>
         </aside>
       </div>

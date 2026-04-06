@@ -14,13 +14,11 @@ const { eyebrow, heading, class: className } = Astro.props;
     className,
   ]}
 >
-  <div>
+  <div class="flex flex-col gap-2">
     <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-foreground-muted">
       {eyebrow}
     </p>
-    <h2
-      class="mt-2 text-[clamp(1.5rem,2.5vw,2.25rem)] font-semibold leading-tight tracking-[-0.04em]"
-    >
+    <h2 class="text-[clamp(1.5rem,2.5vw,2.25rem)] font-semibold leading-tight tracking-[-0.04em]">
       {heading}
     </h2>
   </div>

@@ -94,24 +94,33 @@ export const services = [
     name: 'Air conditioning',
     summary:
       'Repairs when your AC quits or struggles in humid weather, tune-ups before peak season, and honest guidance when replacement makes more sense than another fix.',
+    imageSrc: '/images/airconditioning.png',
+    imageAlt:
+      'Residential outdoor AC condenser with technician adjusting service gauges',
   },
   {
     slug: 'heating',
     name: 'Heating & furnaces',
     summary:
       'Furnace and heat-pump service with clear diagnostics, safety checks, and installs sized for Cleveland winters—without upsells you do not need.',
+    imageSrc: '/images/heating.png',
+    imageAlt: 'Basement furnace with technician performing a safety inspection',
   },
   {
     slug: 'maintenance',
     name: 'Maintenance',
     summary:
       'Seasonal tune-ups and filter reminders that cut emergency calls, keep warranties valid, and help your system run efficiently year-round.',
+    imageSrc: '/images/maintenance.png',
+    imageAlt: 'HVAC air handler with clean filter and seasonal tune-up checklist',
   },
   {
     slug: 'commercial-hvac',
     name: 'Commercial HVAC',
     summary:
       'Rooftop units, split systems, and tenant comfort for offices and retail—scheduled service and after-hours options when downtime costs money.',
+    imageSrc: '/images/commercial.png',
+    imageAlt: 'Commercial rooftop HVAC units on a flat building roof',
   },
 ];
 

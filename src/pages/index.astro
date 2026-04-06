@@ -40,6 +40,8 @@ const tiles: ContentTileProps[] = services.map((s) =>
     title: s.name,
     summary: s.summary,
     link_href: `/services#${s.slug}`,
+    image_src: s.imageSrc,
+    image_alt: s.imageAlt,
     sort_order: 0,
     placement: 'both',
   }),
@@ -61,7 +63,7 @@ if (postTeasers.length === 0) {
   description={`${site.tagline} Call ${site.phoneDisplay} for service, tune-ups, and emergency help.`}
   currentPath="/"
 >
-  <main>
+  <main class="bg-background">
     <Slideshow
       slides={slides}
       titleHeadingLevel={titleHeadingLevel}
@@ -75,7 +77,7 @@ if (postTeasers.length === 0) {
           eyebrow={homeLanding.tilesSectionEyebrow}
           heading={homeLanding.tilesSectionHeading}
         >
-          <div slot="actions" class="flex w-full justify-start md:justify-end">
+          <div slot="actions" class="flex justify-start md:justify-end">
             <Button href={homeLanding.tilesCtaHref} class="w-fit">
               {homeLanding.tilesCtaLabel}
             </Button>
