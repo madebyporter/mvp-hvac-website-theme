@@ -1,9 +1,22 @@
 ---
-export const prerender = true;
+export const prerender = false;
 
 import SubpageHero from '../../components/SubpageHero.astro';
 import Layout from '../../layouts/Layout.astro';
-import { heroSpecialSlides, posts, site } from '../../data/hvac-site-data';
+import { heroSpecialSlides, posts as fallbackPosts, site } from '../../data/hvac-site-data';
+import { loadBlogIndexPosts } from '../../lib/emdash/loadBlogPost';
+
+const cmsPosts = await loadBlogIndexPosts(50);
+const posts =
+  cmsPosts.length > 0
+    ? cmsPosts
+    : fallbackPosts.map((p) => ({
+        slug: p.slug,
+        title: p.title,
+        excerpt: p.excerpt,
+        category: p.category,
+        date: p.date,
+      }));
 ---
 
 <Layout
