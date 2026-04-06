@@ -1,9 +1,26 @@
 diff --git a/node_modules/miniflare/dist/src/workers/d1/database.worker.js b/node_modules/miniflare/dist/src/workers/d1/database.worker.js
-index 18e841e..ddeef58 100644
+index 18e841e..01426c2 100644
 --- a/node_modules/miniflare/dist/src/workers/d1/database.worker.js
 +++ b/node_modules/miniflare/dist/src/workers/d1/database.worker.js
-@@ -30,15 +30,21 @@ function* dumpSql(db, options, stats) {
+@@ -28,17 +28,38 @@ function* dumpSql(db, options, stats) {
+     ORDER BY tbl_name='sqlite_sequence', rowid;
+   `)(), tables = Array.from(tables_cursor);
    stats && (stats.rows_read += tables_cursor.rowsRead, stats.rows_written += tables_cursor.rowsWritten);
++  // EmDash: default sqlite_schema order puts `content_taxonomies` before `taxonomies` and `ec_*`
++  // before `revisions`, but those tables have FKs → remote apply fails if FKs are checked per batch.
++  function emdashContentExportOrder(name) {
++    if (name === "taxonomies") return 10;
++    if (name === "revisions") return 20;
++    if (name === "media") return 30;
++    if (name.startsWith("ec_")) return 40;
++    if (name === "content_taxonomies") return 50;
++    return 100;
++  }
++  tables.sort(
++    (a, b) =>
++      emdashContentExportOrder(a.name) - emdashContentExportOrder(b.name) ||
++      a.name.localeCompare(b.name),
++  );
    for (let { name: table, sql } of tables) {
      if (filterTables.size > 0 && !filterTables.has(table)) continue;
 +    // EmDash: omit every `_emdash_*` table (collections registry, fields, FTS virtual, migrations,
