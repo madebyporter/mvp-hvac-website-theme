@@ -65,6 +65,7 @@ SQL snapshots are written under `.d1-sync/` (gitignored; may contain sensitive d
 
 - Applying a **full** export (`prod.sql` / `local.sql`) on a database that already has the same tables can fail on duplicate `CREATE TABLE` statements. If local schema should match migrations, run `npx wrangler d1 migrations apply hvac-mvp-db --local`, then use the **`*:export-data`** / **`*:apply-data`** scripts to move rows only.
 - Running **`*:apply`** against **remote** executes whatever is in the SQL file. Review `.d1-sync/*.sql` before pushing to production; treat full dumps as potentially destructive.
+- **FTS / EmDash:** Upstream Miniflare aborts `wrangler d1 export` when the database has FTS5 virtual tables (EmDash search uses `_emdash_fts_*`). This repo includes a **`patch-package`** patch on `miniflare` that **skips virtual tables** during export so `d1:push:export-data` / `d1:push:export` work; FTS indexes on the target DB are maintained by EmDash triggers from your normal content tables. Re-run `npm install` after upgrading `miniflare`/`wrangler` so the patch still applies (or refresh the patch if the file path in `node_modules` changes).
 
 ## Cloudflare R2: sync with S3-compatible tools
 
